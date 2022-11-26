@@ -11,3 +11,11 @@ Configration files as a bare repository, managed (optionally) using [dotbare](ht
 
 ### Natively
 See the [Atlassian tutorial](https://www.atlassian.com/git/tutorials/dotfiles).
+
+
+## Used Programs
+- bash - shell
+- git - source control
+- [starship](https://starship.rs) - shell prompt
+- [fzf](https://github.com/junegunn/fzf) - fuzzy finder
+- [micro](https://micro-editor.github.io) - terminal text editor
