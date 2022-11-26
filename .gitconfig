@@ -1,0 +1,25 @@
+[user]
+    name = swebra
+    email = eric@swebra.com
+[core]
+    excludesfile = ~/.gitignore_global
+
+[alias]
+    st = status
+    l = log --oneline --decorate --date=short
+    d = diff
+    ds = diff --staged
+    cm = commit
+    co = checkout
+
+# VSCode for diff/merge tool
+[diff]
+    tool = vscode
+[difftool]
+	prompt = false
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+    tool = vscode
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
