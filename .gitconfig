@@ -6,7 +6,7 @@
 
 [alias]
     st = status
-    l = log --oneline --decorate --date=short
+    l = log --oneline --decorate --date=short --graph
     d = diff
     ds = diff --staged
     cm = commit
