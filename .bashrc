@@ -5,6 +5,7 @@
 shopt -s checkwinsize
 shopt -s expand_aliases
 shopt -s histappend
+HISTCONTROL=ignoreboth
 
 # Let root use X11
 xhost +local:root > /dev/null 2>&1
