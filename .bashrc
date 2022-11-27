@@ -16,7 +16,6 @@ xhost +local:root > /dev/null 2>&1
 
 # Helper Functions
 # ================
-
 # ex <file>
 # Extracts archives
 ex () {
@@ -53,6 +52,20 @@ alias m="micro"
 
 # Shell Setup
 # ===========
-
 # Use starship prompt
 eval "$(starship init bash)"
+# Use direnv
+eval "$(direnv hook bash)"
+
+# Dev Setup
+# =========
+# Python
+export PIP_REQUIRE_VIRTUALENV=1
+gpip() {
+    PIP_REQUIRE_VIRTUALENV=0 python -m pip "$@"
+}
+mkpyvenv() {
+    echo 'layout python' > .envrc
+    direnv allow
+    direnv exec . pip install wheel flake8
+}
