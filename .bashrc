@@ -42,7 +42,7 @@ ex () {
 
 # General Aliases
 # ===============
-alias ls='ls --color=auto'
+alias ls='exa'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'

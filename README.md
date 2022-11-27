@@ -17,6 +17,7 @@ See the [Atlassian tutorial](https://www.atlassian.com/git/tutorials/dotfiles).
 - bash - shell
 - git - source control
 - [starship](https://starship.rs) - shell prompt
+- [exa](https://the.exa.website) - `ls` replacement
 - [fzf](https://github.com/junegunn/fzf) - fuzzy finder
 - [micro](https://micro-editor.github.io) - terminal text editor
 - [direnv](https://direnv.net) - virtual environment management
