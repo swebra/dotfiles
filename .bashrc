@@ -54,6 +54,8 @@ alias m="micro"
 # ===========
 # Use starship prompt
 eval "$(starship init bash)"
+# Use fzf keybindings
+source /usr/share/fzf/key-bindings.bash
 # Use direnv
 eval "$(direnv hook bash)"
 
