@@ -65,6 +65,7 @@ unset distro_id
 # Use direnv
 eval "$(direnv hook bash)"
 
+
 # Dev Setup
 # =========
 # Python
@@ -77,3 +78,9 @@ mkpyvenv() {
     direnv allow
     direnv exec . pip install wheel flake8
 }
+
+
+# Other
+# =====
+# Source additional non-comittable config
+[[ -f ~/.bashrc_extra ]] && . ~/.bashrc_extra
