@@ -1,5 +1,5 @@
 # Dotfiles
-Configration files as a bare repository, managed (optionally) using [dotbare](https://github.com/kazhala/dotbare).
+Configration files as a bare repository, managed (optionally) using [dotbare](https://github.com/kazhala/dotbare). Primarily written for a desktop, Arch-based distro (Manjaro) but some concessions are made to support my work's WSL 2 Ubuntu instance.
 
 ## Migrating to a new system
 ### Via dotbare

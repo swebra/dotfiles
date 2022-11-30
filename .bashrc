@@ -55,7 +55,13 @@ alias m="micro"
 # Use starship prompt
 eval "$(starship init bash)"
 # Use fzf keybindings
-source /usr/share/fzf/key-bindings.bash
+distro_id=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
+if [[ $distro_id != 'ubuntu' ]]; then
+    source /usr/share/fzf/key-bindings.bash
+else
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+fi
+unset distro_id
 # Use direnv
 eval "$(direnv hook bash)"
 
