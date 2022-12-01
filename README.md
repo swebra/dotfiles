@@ -24,6 +24,8 @@ Configuration overrides or security-sensitive files which are not committed but 
 - git - source control
 - [starship](https://starship.rs) - shell prompt
 - [exa](https://the.exa.website) - `ls` replacement
+- [bat](https://github.com/sharkdp/bat) - `bat` replacement
+- [delta](https://github.com/dandavison/delta) - improved (git diff) pager
 - [fzf](https://github.com/junegunn/fzf) - fuzzy finder
 - [micro](https://micro-editor.github.io) - terminal text editor
 - [direnv](https://direnv.net) - virtual environment management

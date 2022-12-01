@@ -12,6 +12,20 @@
     cm = commit
     co = checkout
 
+[diff]
+    colorMoved = default
+[merge]
+    conflictstyle = diff3
+
+# Delta for regular diff
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true # less-style (n, N/p) navigation between diff sections
+    map-styles = bold purple => syntax purple, bold cyan => syntax cyan
+
 # VSCode for diff/merge tool
 [diff]
     tool = vscode
@@ -24,5 +38,6 @@
 [mergetool "vscode"]
     cmd = code --wait $MERGED
 
+# Additional
 [include]
     path = ~/.gitconfig_extra

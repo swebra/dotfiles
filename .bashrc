@@ -43,6 +43,7 @@ ex () {
 # General Aliases
 # ===============
 alias ls='exa'
+alias cat='bat'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
