@@ -35,6 +35,7 @@
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
     tool = vscode
+    keepBackup = false
 [mergetool "vscode"]
     cmd = code --wait $MERGED
 
