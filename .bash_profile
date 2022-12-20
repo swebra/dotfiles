@@ -13,3 +13,6 @@ source ~/.dotbare/dotbare.plugin.bash
 export VISUAL=micro
 export EDITOR="$VISUAL"
 export BROWSER=vivaldi-stable
+
+# Tool customization
+export BAT_THEME="onedark"
