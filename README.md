@@ -29,6 +29,12 @@ Configuration overrides or security-sensitive files which are not committed but 
 - [fzf](https://github.com/junegunn/fzf) - fuzzy finder
 - [micro](https://micro-editor.github.io) - terminal text editor
 - [direnv](https://direnv.net) - virtual environment management
+- [VSCode](https://code.visualstudio.com) - GUI text editor / IDE
+   - [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) - theme
+   - [Rewrap](https://marketplace.visualstudio.com/items?itemName=stkb.rewrap) - comment wrapping
+   - [Render Line Endings](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf) - eol rendering
+   - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - spell checking
+
 
 ## Unreferenced (but still used) programs
 - [jq](https://stedolan.github.io/jq/) - CLI JSON processor
