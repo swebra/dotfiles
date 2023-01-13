@@ -35,7 +35,9 @@ Configuration overrides or security-sensitive files which are not committed but 
    - [Render Line Endings](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf) - eol rendering
    - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - spell checking
 
-
 ## Unreferenced (but still used) programs
 - [jq](https://stedolan.github.io/jq/) - CLI JSON processor
 - [git-open](https://github.com/paulirish/git-open) - open repo remote in browser
+
+## Styling
+- [Meslo LG S Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/S) - font, also available as an [AUR package](https://aur.archlinux.org/packages/ttf-meslo)
