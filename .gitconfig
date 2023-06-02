@@ -9,8 +9,13 @@
     l = log --oneline --decorate --date=short --graph
     d = diff
     ds = diff --staged
+    a = add
     cm = commit
+    cmm = commit -m
     co = checkout
+    cob = checkout -b
+    p = push
+    pu = push -u origin HEAD
 
 [diff]
     colorMoved = default
