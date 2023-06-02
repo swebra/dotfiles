@@ -3,6 +3,7 @@
     email = eric@swebra.com
 [core]
     excludesFile = ~/.config/git/gitignore_global
+    hooksPath = ~/.config/git/hooks
 
 [alias]
     st = status
