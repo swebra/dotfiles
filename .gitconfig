@@ -2,7 +2,7 @@
     name = swebra
     email = eric@swebra.com
 [core]
-    excludesfile = ~/.config/git/gitignore_global
+    excludesFile = ~/.config/git/gitignore_global
 
 [alias]
     st = status
@@ -20,7 +20,7 @@
 [diff]
     colorMoved = default
 [merge]
-    conflictstyle = diff3
+    conflictStyle = diff3
 
 # Delta for regular diff
 [core]
