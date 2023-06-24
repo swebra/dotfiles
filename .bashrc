@@ -42,7 +42,8 @@ ex () {
 
 # General Aliases
 # ===============
-alias ls='exa'
+alias ls='exa --icons --group-directories-first --header'
+alias tree='ls --tree'
 alias cat='bat'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
