@@ -1,9 +1,10 @@
 #!/bin/sh
 
-# Run local hook if exists
 HOOK=$1
+shift # Drop hook name from arguments
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
+# Run local hook if exists
 if [ -e "$PROJECT_ROOT/.git/hooks/$HOOK" ]; then
   $PROJECT_ROOT/.git/hooks/$HOOK "$@"
 else
