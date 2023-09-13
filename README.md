@@ -44,15 +44,22 @@ Configuration overrides or security-sensitive files which are not committed but 
 
 ## Note on global git hooks
 There are two ways to manage global git hooks:
-1. (What is done here:) Setting [`core.hooksPath`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath) globally to point to your hooks. This overrides the default `$GIT_DIR/hooks` value however, so for any local hooks to execute, you have to [call them from your global hooks](https://stackoverflow.com/a/71939092).
+1. (What is done here) Setting [`core.hooksPath`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath) globally to point to your hooks. This overrides the default `$GIT_DIR/hooks` value however, so for any local hooks to execute, you have to [call them from your global hooks](https://stackoverflow.com/a/71939092).
 1. Setting [`init.templateDir`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-inittemplateDir) globally to point to a template directory with your global hooks. Your hooks will then be automatically copied into the local `$GIT_DIR/hooks` (`.git/hooks`) directory of any newly created repos, and existing repos can be updated by rerunning `git init`. Rerunning `git init` will not overwrite any files however, so if you already had local hooks or if you ever update your global hook, you have to manually copy.
 
-Unfortunately both methods break when interacting with a repo using tooling which locally sets `core.hooksPath`, such as [husky](https://www.npmjs.com/package/husky); This points git away from either your global hooks path or the default hooks path your global hooks are copied into. In such cases, you have work around the tool via manual configurations and symlinks. For example, with the first method and husky:
-```bash
-git config --unset core.hooksPath
-rm -r .git/hooks
-# Symlink the husky hooks to the default location
-# A full path must be used, hence $(pwd)
-ln -s $(pwd)/<path/to/husky/hooks/> .git/hooks/
-```
-Note that [pre-commit](https://pre-commit.com) doesn't have the same issue because it _copies_ its pre-commit file into the standard `.git/hooks/` instead.
+Unfortunately both methods can temporarily break or be temporarily broken by in-repo hook management tools such as [pre-commit](https://pre-commit.com) or [husky](https://www.npmjs.com/package/husky). For method 1:
+- `pre-commit install` will ["cowardly refuse" to install hooks](https://github.com/pre-commit/pre-commit/issues/1198) if `core.hooksPath` is set anywhere (locally or globally, even if it's set to the default value of `.git/hooks`), and a proposed override for this behavior was [rejected](https://github.com/pre-commit/pre-commit/issues/1198#issuecomment-844208591). This has to be worked around by temporarily disabling the global hooks to perform the install:
+   ```bash
+   globalHooksPath=$(git config --global core.hooksPath)
+   git config --unset --global core.hooksPath
+   pre-commit install
+   git config --global core.hooksPath $globalHooksPath
+   ```
+- Husky will locally set `core.hooksPath` to its directory of hooks, which points git away from your global hooks. This can be worked around by un-setting the local path and symlinking the husky hooks to the default hook location so the global hooks still call the local hooks:
+   ```bash
+   git config --unset core.hooksPath
+   rm -r .git/hooks
+   # Symlink the husky hooks to the default location
+   # A full path must be used, hence $(pwd)
+   ln -s $(pwd)/<path/to/husky/hooks/> .git/hooks/
+   ```
