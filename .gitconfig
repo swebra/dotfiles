@@ -17,6 +17,7 @@
     cob = checkout -b
     p = push
     pu = push -u origin HEAD
+    pf = push --force-with-lease
 
 [diff]
     colorMoved = default
