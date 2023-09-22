@@ -61,5 +61,5 @@ Unfortunately both methods can temporarily break or be temporarily broken by in-
    rm -r .git/hooks
    # Symlink the husky hooks to the default location
    # A full path must be used, hence $(pwd)
-   ln -s $(pwd)/<path/to/husky/hooks/> .git/hooks/
+   ln -s $(pwd)/<path/to/husky/hooks/> .git/hooks
    ```
