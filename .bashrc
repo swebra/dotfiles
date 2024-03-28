@@ -50,6 +50,7 @@ alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 
 alias m="micro"
+alias dc="docker compose"
 
 
 # Shell Setup
