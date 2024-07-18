@@ -43,6 +43,8 @@
 [merge]
     tool = vscode
     keepBackup = false
+[mergetool]
+	keepBackup = false
 [mergetool "vscode"]
     cmd = code --wait $MERGED
 
