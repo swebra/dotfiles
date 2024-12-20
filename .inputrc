@@ -1,3 +1,0 @@
-set completion-ignore-case On
-
-"\C-h": backward-kill-word
