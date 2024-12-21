@@ -6,7 +6,7 @@
 }: let
   private_aws = private.work.aws;
   sso_accounts = private_aws.sso.accounts;
-  codeartifact_do = builtins.toString private_aws.codeartifact.domainOwner;
+  codeartifact_do = private_aws.codeartifact.domainOwner;
 in {
   programs.awscli = {
     enable = true;

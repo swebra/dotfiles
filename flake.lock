@@ -93,11 +93,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1734323986,
-        "narHash": "sha256-m/lh6hYMIWDYHCAsn81CDAiXoT3gmxXI9J987W5tZrE=",
+        "lastModified": 1734737257,
+        "narHash": "sha256-GIMyMt1pkkoXdCq9un859bX6YQZ/iYtukb9R5luazLM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "394571358ce82dff7411395829aa6a3aad45b907",
+        "rev": "1c6e20d41d6a9c1d737945962160e8571df55daa",
         "type": "github"
       },
       "original": {
@@ -109,10 +109,10 @@
     },
     "private": {
       "locked": {
-        "lastModified": 1734493746,
-        "narHash": "sha256-qEflrsEfJX7/AcMmAmGFgm1MOZtgygv+1c9BFPl69Is=",
+        "lastModified": 1734803823,
+        "narHash": "sha256-QMFu89BweOIKc4owRBOxAfQ+AzkbnbVtKL8dy7zgvkQ=",
         "ref": "main",
-        "rev": "cd4cc77431309ddbdf8938ac5b4478943eabd2fb",
+        "rev": "c70a3f2864cd877737556f97a91341528c82dee4",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/swebra/dotfiles-private"
