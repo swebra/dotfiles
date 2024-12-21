@@ -25,15 +25,24 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations = {
+      xps9575 = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [./hosts/xps9575/configuration.nix];
+      };
+
       wsl = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/wsl/configuration.nix
-        ];
+        modules = [./hosts/wsl/configuration.nix];
       };
     };
     homeConfigurations = {
+      "eric@xps9575" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {inherit private;};
+        modules = [./hosts/xps9575/home.nix];
+      };
+
       "eric@wsl" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit private;};
