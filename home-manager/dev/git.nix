@@ -25,11 +25,8 @@
     };
 
     ignores = [
-      ".eric"
-      "flake.nix"
-      "flake.lock"
-      # Python
-      ".venv"
+      ".eric" # Notes
+      ".venv" # Python
     ];
 
     delta = {
