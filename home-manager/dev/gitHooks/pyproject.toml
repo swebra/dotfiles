@@ -1,0 +1,10 @@
+[project]
+name = "run-local-git-hook"
+version = "1.0.0"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["run_local_hook.py"]
