@@ -1,25 +1,4 @@
 {...}: {
-  programs.eza = {
-    enable = true;
-    enableBashIntegration = true;
-
-    icons = "auto";
-    git = true;
-    extraOptions = [
-      "--header"
-      "--group-directories-first"
-    ];
-  };
-
-  programs.bat = {
-    enable = true;
-
-    # TODO: style
-  };
-
-  programs.ripgrep.enable = true;
-
-  # Prompt + CLI interaction
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
@@ -50,8 +29,6 @@
     enable = true;
 
     shellAliases = {
-      cat = "bat";
-      grep = "rg";
       dc = "docker compose";
     };
 
