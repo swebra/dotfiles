@@ -1,5 +1,8 @@
-# WIP: Transitioning to nix
+# Nix dotfiles
+Flake-based NixOS/home-manager configuration.
 
+## Secret management
+Sensitive configuration is stored in a private repo and referenced here through a flake input called `private`.
 
 ## Note on global git hooks
 There are two ways to manage global git hooks:
