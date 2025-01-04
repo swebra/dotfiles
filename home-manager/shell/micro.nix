@@ -15,10 +15,12 @@
   home.file."${config.xdg.configHome}/micro/bindings.json".text = builtins.toJSON {
     CtrlUp = "MoveLinesUp";
     CtrlDown = "MoveLinesDown";
+    CtrlUnderscore = "lua:comment.comment";
+    "Alt-/" = "lua:comment.comment";
   };
 
-  programs.bash.shellAliases.m = "micro";
   # TODO: Make setting the default an option instead
+  programs.bash.shellAliases.m = "micro";
   home.sessionVariables = {
     EDITOR = "micro";
     VISUAL = "micro";
