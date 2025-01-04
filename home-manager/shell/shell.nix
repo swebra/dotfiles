@@ -17,6 +17,8 @@
     # TODO: style
   };
 
+  programs.ripgrep.enable = true;
+
   # Prompt + CLI interaction
   programs.starship = {
     enable = true;
@@ -49,9 +51,12 @@
 
     shellAliases = {
       cat = "bat";
-      m = "micro";
+      grep = "rg";
       dc = "docker compose";
     };
+
+    # Ignore duplicate commands and space-prefix commands in history
+    historyControl = ["ignoreboth"];
   };
 
   home.file.".inputrc".text = ''

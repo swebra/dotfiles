@@ -17,7 +17,8 @@
     CtrlDown = "MoveLinesDown";
   };
 
-  # TODO: Make settings the default an option instead
+  programs.bash.shellAliases.m = "micro";
+  # TODO: Make setting the default an option instead
   home.sessionVariables = {
     EDITOR = "micro";
     VISUAL = "micro";
