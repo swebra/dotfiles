@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   private,
   lib,
@@ -9,7 +10,10 @@
   ];
 
   home.sessionVariables = {
-    BROWSER = "/mnt/c/Program Files/Zen Browser/zen.exe";
+    # Wrap as shell script to work around spaces in path for tools like git-open
+    BROWSER = lib.getExe (pkgs.writeShellScriptBin "zen-browser" ''
+      /mnt/c/Program\ Files/Zen\ Browser/zen.exe "$@"
+    '');
   };
 
   # TODO: is mkForce safe here?
