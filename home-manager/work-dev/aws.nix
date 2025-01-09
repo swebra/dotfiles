@@ -43,44 +43,62 @@ in {
   home.packages = with pkgs; [
     amazon-ecr-credential-helper
 
-    (writeShellScriptBin "aws-login" ''
-      export AWS_DEFAULT_REGION=us-east-1
+    (
+      writeShellApplication {
+        name = "aws-login";
 
-      aws-set-codeartifact-vars() {
-          export CODEARTIFACT_TOKEN=$(aws codeartifact get-authorization-token --domain drivewyze --domain-owner ${codeartifact_do} --query authorizationToken --output text)
-          export PYPI_REPO="https://aws:''${CODEARTIFACT_TOKEN}@drivewyze-${codeartifact_do}.d.codeartifact.us-east-1.amazonaws.com/pypi/dw-central-pypi/simple/"
-          export NPM_REPO="registry=https://drivewyze-${codeartifact_do}.d.codeartifact.us-east-1.amazonaws.com/npm/dw-central-npm/"$'\n'"//drivewyze-${codeartifact_do}.d.codeartifact.us-east-1.amazonaws.com/npm/dw-central-npm/:_authToken=''${CODEARTIFACT_TOKEN}"
-          echo 'Set CODEARTIFACT_TOKEN, PYPI_REPO and NPM_REPO environment variables'
-      }
+        # Tools to be used by `aws codeartifact login`
+        runtimeInputs = [
+          python3Packages.pip
+          nodejs
+        ];
 
-      aws-config-pip() {
-          # https://docs.aws.amazon.com/codeartifact/latest/ug/python-configure-pip.html
-          aws codeartifact login --tool pip --domain drivewyze --domain-owner ${codeartifact_do} --repository dw-central-pypi
-      }
+        # Skip shellcheck, don't want to deviate from provided script too much
+        checkPhase = "";
 
-      aws-config-npm() {
-          # https://docs.aws.amazon.com/codeartifact/latest/ug/npm-auth.html
-          aws codeartifact login --tool npm --domain drivewyze --domain-owner ${codeartifact_do} --repository dw-central-npm
-      }
+        # Skip default set -o errexit / pipefail
+        bashOptions = ["nounset"];
 
-      export AWS_PROFILE="''${1:-default}"
+        text = ''
+          export AWS_DEFAULT_REGION=us-east-1
 
-      ARN=$(aws sts get-caller-identity --query "Arn" 2> /dev/null)
-      if [ $? -ne 0 ]; then  # If not already logged in
-          aws sso login
-          if [ $? -ne 0 ]; then
-              return 1
+          aws-set-codeartifact-vars() {
+              export CODEARTIFACT_TOKEN=$(aws codeartifact get-authorization-token --domain drivewyze --domain-owner ${codeartifact_do} --query authorizationToken --output text)
+              export PYPI_REPO="https://aws:''${CODEARTIFACT_TOKEN}@drivewyze-${codeartifact_do}.d.codeartifact.us-east-1.amazonaws.com/pypi/dw-central-pypi/simple/"
+              export NPM_REPO="registry=https://drivewyze-${codeartifact_do}.d.codeartifact.us-east-1.amazonaws.com/npm/dw-central-npm/"$'\n'"//drivewyze-${codeartifact_do}.d.codeartifact.us-east-1.amazonaws.com/npm/dw-central-npm/:_authToken=''${CODEARTIFACT_TOKEN}"
+              echo 'Set CODEARTIFACT_TOKEN, PYPI_REPO and NPM_REPO environment variables'
+          }
+
+          aws-config-pip() {
+              # https://docs.aws.amazon.com/codeartifact/latest/ug/python-configure-pip.html
+              aws codeartifact login --tool pip --domain drivewyze --domain-owner ${codeartifact_do} --repository dw-central-pypi
+          }
+
+          aws-config-npm() {
+              # https://docs.aws.amazon.com/codeartifact/latest/ug/npm-auth.html
+              aws codeartifact login --tool npm --domain drivewyze --domain-owner ${codeartifact_do} --repository dw-central-npm
+          }
+
+          export AWS_PROFILE="''${1:-default}"
+
+          ARN=$(aws sts get-caller-identity --query "Arn" 2> /dev/null)
+          if [ $? -ne 0 ]; then  # If not already logged in
+              aws sso login
+              if [ $? -ne 0 ]; then
+                  return 1
+              fi
+
+              aws-config-pip
+              aws-config-npm
+          else
+              echo 'Already logged in with following arn:'
+              echo $ARN
           fi
 
-          aws-config-pip
-          aws-config-npm
-      else
-          echo 'Already logged in with following arn:'
-          echo $ARN
-      fi
-
-      # Always set environment variables in current shell
-      aws-set-codeartifact-vars
-    '')
+          # Always set environment variables in current shell
+          aws-set-codeartifact-vars
+        '';
+      }
+    )
   ];
 }
