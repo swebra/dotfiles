@@ -9,11 +9,11 @@
   ];
 
   # Services for development
-  postgres.enable = true;
+  opt.postgres.enable = true;
 
   # WSL support
   wsl.enable = true;
-  wsl.defaultUser = config.user;
+  wsl.defaultUser = config.opt.user;
   networking.hostName = "wsl";
 
   # Provide libraries for VSCode remote

@@ -12,9 +12,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  users.users.${config.user} = {
+  users.users.${config.opt.user} = {
     isNormalUser = true;
-    description = config.user;
+    description = config.opt.user;
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
@@ -77,7 +77,7 @@
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = config.user;
+  services.xserver.displayManager.autoLogin.user = config.opt.user;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -4,13 +4,13 @@
   ...
 }: {
   options = {
-    docker.enable = lib.mkEnableOption "Enables docker support";
+    opt.docker.enable = lib.mkEnableOption "Enables docker support";
   };
 
-  config = lib.mkIf config.docker.enable {
+  config = lib.mkIf config.opt.docker.enable {
     virtualisation.docker.enable = true;
 
     # TODO: Reference user
-    users.extraGroups.docker.members = [config.user];
+    users.extraGroups.docker.members = [config.opt.user];
   };
 }

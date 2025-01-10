@@ -14,6 +14,6 @@
     nix.settings.experimental-features = ["nix-command" "flakes"];
     nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"]; # set primarily for nixd
 
-    docker.enable = lib.mkDefault true;
+    opt.docker.enable = lib.mkDefault true;
   };
 }

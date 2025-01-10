@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    postgres.enable = lib.mkEnableOption "Enables postgres support";
+    opt.postgres.enable = lib.mkEnableOption "Enables postgres support";
   };
 
-  config = lib.mkIf config.postgres.enable {
+  config = lib.mkIf config.opt.postgres.enable {
     services.postgresql = {
       enable = true;
       package = pkgs.postgresql_15;
