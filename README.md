@@ -1,6 +1,17 @@
 # Nix dotfiles
 Flake-based NixOS/home-manager configuration.
 
+## Bootstrap dotfiles with home-manager
+Assuming nix is installed, apply a selected configuration (such as `eric@xps9575`) with the following:
+```bash
+nix run home-manager -- switch -b backup --flake github:swebra/dotfiles/nix#eric@xps9575
+
+# or
+git clone git@github.com:swebra/dotfiles.git ~/.dotfiles
+nix run home-manager -- switch -b backup --flake ~/.dotfiles#eric@xps9575
+```
+Note if the selected configuration references private values (see below), access to the private repo through SSH will also be required.
+
 ## Secret management
 Sensitive configuration is stored in a private repo and referenced here through a flake input called `private`.
 
