@@ -21,14 +21,13 @@ in {
             sso_registration_scopes = "sso:account:access";
           };
 
-          # Profiles
           default = {
             sso_session = "azure";
             sso_account_id = sso_accounts.default;
             sso_role_name = "AcctPowerUser";
           };
         }
-        // # Update operator, extend the settings above with the additional profiles generated below
+        // # Extend the settings above with the additional profiles generated below
         lib.mapAttrs' (name: id:
           lib.nameValuePair "profile ${name}" {
             sso_session = "azure";

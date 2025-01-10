@@ -10,6 +10,4 @@
     ".direnv"
     ".envrc"
   ];
-
-  # TODO: Script to setup python workspace
 }

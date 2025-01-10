@@ -3,11 +3,8 @@
     ../../home-manager
   ];
 
-  # Home Manager
-  # ------------
-  # Let Home Manager install and manage itself.
+  # Home-manager self-management
   programs.home-manager.enable = true;
-
   home.username = "eric";
   home.homeDirectory = "/home/${config.home.username}";
 
