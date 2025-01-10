@@ -9,17 +9,18 @@
     ../../home-manager
   ];
 
+  opt.work-dev.enable = lib.mkForce true;
+
+  programs.git = {
+    userName = lib.mkForce "Eric Claerhout";
+    userEmail = lib.mkForce private.work.email;
+  };
+
   home.sessionVariables = {
     # Wrap as shell script to work around spaces in path for tools like git-open
     BROWSER = lib.getExe (pkgs.writeShellScriptBin "zen-browser" ''
       /mnt/c/Program\ Files/Zen\ Browser/zen.exe "$@"
     '');
-  };
-
-  # TODO: is mkForce safe here?
-  programs.git = {
-    userName = lib.mkForce "Eric Claerhout";
-    userEmail = lib.mkForce private.work.email;
   };
 
   # Home Manager

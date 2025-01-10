@@ -1,7 +1,9 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ./aws.nix
   ];
-}
-# TODO: Global hook
 
+  options = {
+    opt.work-dev.enable = lib.mkEnableOption "Enable work-specific development configuration";
+  };
+}
