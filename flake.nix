@@ -27,6 +27,7 @@
     nixosConfigurations = {
       xps9575 = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {inherit inputs;};
         modules = [./hosts/xps9575/configuration.nix];
       };
 
