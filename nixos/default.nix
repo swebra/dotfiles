@@ -8,6 +8,7 @@
     ./core_programs.nix
     ./services/docker.nix
     ./services/postgres.nix
+    ./gui
   ];
 
   config = {

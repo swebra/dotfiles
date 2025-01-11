@@ -8,9 +8,9 @@
     ./hardware-configuration.nix
   ];
 
-  # TODO: Abstract most of this
+  opt.gui.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
+  # TODO: Abstract most of this
 
   users.users.${config.opt.user} = {
     isNormalUser = true;
@@ -18,8 +18,6 @@
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
-      micro
-      vscode
       dolphin-emu
     ];
   };

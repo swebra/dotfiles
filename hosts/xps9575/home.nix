@@ -1,7 +1,15 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  nixpkgs,
+  ...
+}: {
   imports = [
     ../../home-manager
   ];
+
+  nixpkgs.config.allowUnfree = true;
+  opt.gui.enable = lib.mkForce true;
 
   # Home-manager self-management
   programs.home-manager.enable = true;
