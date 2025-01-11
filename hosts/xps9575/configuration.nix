@@ -10,6 +10,9 @@
 
   opt.gui.enable = true;
 
+  nixpkgs.config.allowUnfree = true;
+  opt.gaming.enable = true;
+
   # TODO: Abstract most of this
 
   users.users.${config.opt.user} = {

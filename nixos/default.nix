@@ -9,6 +9,7 @@
     ./services/docker.nix
     ./services/postgres.nix
     ./gui
+    ./gaming
   ];
 
   config = {
