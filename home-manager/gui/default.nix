@@ -2,6 +2,7 @@
   imports = [
     ./alacritty.nix
     ./vscode.nix
+    ./zen-browser.nix
   ];
 
   options = {

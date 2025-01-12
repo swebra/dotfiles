@@ -11,6 +11,9 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
+    # Community zen-browser before it's in official repos
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     # Personal private repo
     private.url = "git+ssh://git@github.com/swebra/dotfiles-private?ref=main&shallow=1";
   };
@@ -40,13 +43,19 @@
     homeConfigurations = {
       "eric@xps9575" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = {inherit private;};
+        extraSpecialArgs = {
+          inherit private;
+          inherit inputs;
+        };
         modules = [./hosts/xps9575/home.nix];
       };
 
       "eric@wsl" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = {inherit private;};
+        extraSpecialArgs = {
+          inherit private;
+          inherit inputs;
+        };
         modules = [./hosts/wsl/home.nix];
       };
     };
