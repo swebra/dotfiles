@@ -1,8 +1,4 @@
-{
-  lib,
-  inputs,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./user.nix
     ./core_programs.nix
@@ -14,7 +10,6 @@
 
   config = {
     nix.settings.experimental-features = ["nix-command" "flakes"];
-    nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"]; # set primarily for nixd
 
     opt.docker.enable = lib.mkDefault true;
   };
