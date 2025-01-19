@@ -50,7 +50,7 @@
     delta = {
       enable = true;
       options = {
-        nativate = true;
+        navigate = true;
         map-styles = "bold purple => syntax purple, bold cyan => syntax cyan";
       };
     };
