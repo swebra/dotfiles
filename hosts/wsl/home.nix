@@ -9,7 +9,10 @@
     ../../home-manager
   ];
 
-  opt.work-dev.enable = lib.mkForce true;
+  myHome = {
+    dev.enable = true;
+    work-dev.enable = true;
+  };
 
   programs.git = {
     userName = lib.mkForce "Eric Claerhout";
