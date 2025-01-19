@@ -8,8 +8,10 @@
     inputs.nixos-wsl.nixosModules.default
   ];
 
-  # Services for development
-  opt.postgres.enable = true;
+  myOS = {
+    services.docker.enable = true;
+    services.postgres.enable = true;
+  };
 
   # WSL support
   wsl.enable = true;

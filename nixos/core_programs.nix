@@ -1,7 +1,5 @@
 {pkgs, ...}: {
-  config = {
-    environment.systemPackages = with pkgs; [
-      wget
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    wget
+  ];
 }

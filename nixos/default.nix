@@ -1,16 +1,12 @@
-{lib, ...}: {
-  imports = [
-    ./user.nix
-    ./core_programs.nix
-    ./services/docker.nix
-    ./services/postgres.nix
-    ./gui
-    ./gaming
-  ];
+{...} @ inputs: let
+  myLib = import ../myLib inputs;
+in {
+  imports = myLib.recursiveOptionedImport ["myOS"] ./.;
 
   config = {
-    nix.settings.experimental-features = ["nix-command" "flakes"];
-
-    opt.docker.enable = lib.mkDefault true;
+    myOS = {
+      nix.enable = true;
+      core_programs.enable = true;
+    };
   };
 }

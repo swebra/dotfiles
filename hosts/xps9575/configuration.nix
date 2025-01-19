@@ -8,10 +8,12 @@
     ./hardware-configuration.nix
   ];
 
-  opt.gui.enable = true;
+  myOS = {
+    gui.enable = true;
+    gaming.enable = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
-  opt.gaming.enable = true;
 
   # TODO: Abstract most of this
 
