@@ -5,10 +5,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ../../home-manager
-  ];
-
   myHome = {
     dev.enable = true;
     work-dev.enable = true;

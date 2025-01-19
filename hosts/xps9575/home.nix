@@ -1,8 +1,4 @@
 {config, ...}: {
-  imports = [
-    ../../home-manager
-  ];
-
   myHome = {
     dev.enable = true;
     gui.enable = true;

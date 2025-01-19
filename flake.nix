@@ -1,5 +1,5 @@
 {
-  description = "swebra's Nix/NixOS/home-manager configuration flake";
+  description = "swebra's NixOS/home-manager configuration flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
@@ -18,46 +18,16 @@
     private.url = "git+ssh://git@github.com/swebra/dotfiles-private?ref=main&shallow=1";
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    private,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    nixosConfigurations = {
-      xps9575 = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-        modules = [./hosts/xps9575/configuration.nix];
+  outputs = {...} @ inputs:
+    with (import ./myLib/make-outputs.nix inputs); {
+      nixosConfigurations = {
+        xps9575 = makeSystem "x86_64-linux" ./hosts/xps9575/configuration.nix;
+        wsl = makeSystem "x86_64-linux" ./hosts/wsl/configuration.nix;
       };
 
-      wsl = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-        modules = [./hosts/wsl/configuration.nix];
+      homeConfigurations = {
+        "eric@xps9575" = makeHome "x86_64-linux" ./hosts/xps9575/home.nix;
+        "eric@wsl" = makeHome "x86_64-linux" ./hosts/wsl/home.nix;
       };
     };
-    homeConfigurations = {
-      "eric@xps9575" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit private;
-          inherit inputs;
-        };
-        modules = [./hosts/xps9575/home.nix];
-      };
-
-      "eric@wsl" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit private;
-          inherit inputs;
-        };
-        modules = [./hosts/wsl/home.nix];
-      };
-    };
-  };
 }
