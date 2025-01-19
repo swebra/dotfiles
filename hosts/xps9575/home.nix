@@ -10,8 +10,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # Home-manager self-management
-  programs.home-manager.enable = true;
+  # Home-manager config
   home.username = "eric";
   home.homeDirectory = "/home/${config.home.username}";
 

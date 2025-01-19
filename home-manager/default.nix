@@ -5,8 +5,8 @@ in {
 
   config = {
     myHome = {
+      nix.enable = true;
       shell.enable = true;
-      meta.enable = true;
     };
   };
 }
