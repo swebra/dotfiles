@@ -6,7 +6,6 @@ in {
   config = {
     myOS = {
       nix.enable = true;
-      core_programs.enable = true;
     };
   };
 }
