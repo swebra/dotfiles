@@ -29,6 +29,7 @@
         default = makeHome "x86_64-linux" ./hosts/default/home.nix;
         "eric@xps9575" = makeHome "x86_64-linux" ./hosts/xps9575/home.nix;
         "eric@wsl" = makeHome "x86_64-linux" ./hosts/wsl/home.nix;
+        "deck@steamdeck" = makeHome "x86_64-linux" ./hosts/steamdeck/home.nix;
       };
     };
 }
