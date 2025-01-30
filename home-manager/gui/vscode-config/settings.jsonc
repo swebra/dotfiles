@@ -1,0 +1,122 @@
+{
+  // General Settings
+  // ===============
+  // Visual
+  "workbench.colorTheme": "One Dark Pro",
+  // Smooth scrolling
+  "workbench.list.smoothScrolling": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  // Keyboard interactions
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "workbench.commandPalette.preserveInput": true,
+  // Editor Settings
+  // ===============
+  // Visual
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": true,
+  "editor.fontFamily": "'MesloLGS Nerd Font', monospace",
+  "editor.fontSize": 14,
+  "editor.rulers": [
+    80,
+    100
+  ],
+  "editor.renderWhitespace": "none",
+  // Saving + formatting
+  "files.autoSave": "off",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.trimAutoWhitespace": true,
+  // Behavior
+  "editor.stickyTabStops": true,
+  "editor.snippetSuggestions": "top",
+  "diffEditor.ignoreTrimWhitespace": false,
+  // Panels Settings
+  // ===============
+  // Visual
+  "workbench.activityBar.visible": false,
+  "terminal.integrated.fontSize": 15,
+  "workbench.colorCustomizations": {
+    "terminal.ansiBlack": "#282c34",
+    "terminal.ansiBlue": "#61afef",
+    "terminal.ansiCyan": "#56b6c2",
+    "terminal.ansiGreen": "#98c379",
+    "terminal.ansiMagenta": "#c678dd",
+    "terminal.ansiRed": "#e06c75",
+    "terminal.ansiWhite": "#abb2bf",
+    "terminal.ansiYellow": "#e5c07b",
+    "terminal.ansiBrightBlack": "#454c59",
+    "terminal.ansiBrightBlue": "#69bbff",
+    "terminal.ansiBrightCyan": "#66d9e8",
+    "terminal.ansiBrightGreen": "#b5e890",
+    "terminal.ansiBrightMagenta": "#e48aff",
+    "terminal.ansiBrightRed": "#ff7a85",
+    "terminal.ansiBrightWhite": "#cfd7e6",
+    "terminal.ansiBrightYellow": "#ffd68a",
+  },
+  // Behavior
+  "workbench.list.defaultFindMode": "filter",
+  "explorer.confirmDragAndDrop": false,
+  // General Extension Settings
+  // ==========================
+  // streetsidesoftware.code-spell-checker
+  "cSpell.userWords": [
+    "Claerhout",
+    "Drivewyze",
+    "geofence"
+  ],
+  // Language Settings
+  // =================
+  // Markdown
+  "markdown.preview.scrollPreviewWithEditor": false,
+  "markdown.preview.scrollEditorWithPreview": false,
+  "markdown.preview.doubleClickToSwitchToEditor": false,
+  // Python
+  "python.linting.enabled": true,
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "formatOnSave": true,
+  },
+  // JSON
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // Web
+  "[css]": {
+    "editor.tabSize": 2,
+  },
+  "[html]": {
+    "editor.tabSize": 2,
+  },
+  // Lisp
+  "[lisp]": {
+    "editor.tabSize": 2,
+  },
+  // Nix
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": {
+        "command": [
+          "alejandra"
+        ],
+      },
+    }
+  },
+  "nix.formatterPath": [
+    "alejandra",
+  ],
+  "[nix]": {
+    "editor.formatOnSave": true
+  },
+  // WIP unsorted
+  "window.menuBarVisibility": "toggle",
+  "workbench.activityBar.location": "bottom",
+}
