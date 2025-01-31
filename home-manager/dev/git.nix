@@ -32,19 +32,6 @@
     extraConfig = {
       diff.colorMoved = "default";
       merge.conflictStyle = "diff3";
-
-      # TODO: move these VSCode settings into VSCode-specific program config
-      diff.tool = "vscode";
-      difftool = {
-        prompt = false;
-        vscode.cmd = "code --wait --diff $LOCAL $REMOTE";
-      };
-
-      merge.tool = "vscode";
-      mergetool = {
-        keepBackup = "false";
-        vscode.cmd = "code --wait $MERGED";
-      };
     };
 
     delta = {
