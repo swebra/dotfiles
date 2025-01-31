@@ -7,7 +7,7 @@
 
   programs.nh = {
     enable = true;
-    flake = builtins.toPath "${config.home.homeDirectory}/.dotfiles";
+    flake = config.myHome.dotfilesDir;
   };
 
   home.packages = with pkgs; [

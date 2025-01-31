@@ -12,7 +12,7 @@
 
       # TODO: make option for dotfiles clone location
       xdg.configFile = let
-        parentDir = "${config.home.homeDirectory}/.dotfiles/home-manager/dev";
+        parentDir = "${config.myHome.dotfilesDir}/home-manager/dev";
         mkOutOfStoreSymlink = path: config.lib.file.mkOutOfStoreSymlink "${parentDir}/${path}";
       in {
         "Code/User/settings.json".source = mkOutOfStoreSymlink "vscode-config/settings.jsonc";
