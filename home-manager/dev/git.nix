@@ -47,14 +47,14 @@
         pname = "run-local-git-hook";
         version = "1.0.0";
 
-        src = ./gitHooks;
+        src = ./git-hooks;
         format = "pyproject";
         nativeBuildInputs = [pkgs.python3Packages.hatchling];
       };
 
       # TODO: Could use toPythonApplication? Maybe need scripts defined in pyproject.toml
       runLocalHook = lib.getExe (
-        pkgs.writers.writePython3Bin "runLocalHook" {} ./gitHooks/run_local_hook.py
+        pkgs.writers.writePython3Bin "runLocalHook" {} ./git-hooks/run_local_hook.py
       );
 
       prepareCommitMsg = lib.getExe (
@@ -62,7 +62,7 @@
           libraries = [runLocalHookLib];
           flakeIgnore = ["E501"];
         }
-        ./gitHooks/prepare_commit_msg.py
+        ./git-hooks/prepare_commit_msg.py
       );
     in {
       commit-msg = runLocalHook;
