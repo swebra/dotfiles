@@ -22,7 +22,10 @@
     80,
     100
   ],
-  "editor.renderWhitespace": "none",
+  "editor.renderWhitespace": "selection",
+  "code-eol.crlfCharacter": "¤¬",
+  "code-eol.newlineCharacter": "¬",
+  "code-eol.returnCharacter": "¤",
   // Saving + formatting
   "files.autoSave": "off",
   "files.insertFinalNewline": true,
@@ -35,7 +38,6 @@
   // Panels Settings
   // ===============
   // Visual
-  "workbench.activityBar.visible": false,
   "terminal.integrated.fontSize": 15,
   "workbench.colorCustomizations": {
     "terminal.ansiBlack": "#282c34",
