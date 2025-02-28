@@ -8,6 +8,7 @@
   myHome = {
     dev.enable = true;
     work-dev.enable = true;
+    windows.enable = true;
   };
 
   programs.git = {
