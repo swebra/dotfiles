@@ -75,10 +75,9 @@
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.doubleClickToSwitchToEditor": false,
   // Python
-  "python.linting.enabled": true,
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
-    "formatOnSave": true,
+    "editor.formatOnSave": true
   },
   // JSON
   "[json]": {
