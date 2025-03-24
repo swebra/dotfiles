@@ -52,18 +52,20 @@
         --mkpath to create parent directories
         --copy-links to handle symlinks
         --chmod to set permissions (all for folders, read only for files)
+        --checksum to compare files by checksum, avoiding sync-skips due to WSL time drift
         Note the lack of --delete
       */
       formatCmd = src: dest: ''
+        verboseEcho ""
+        verboseEcho "Syncing ${src} to $USERPROFILE/${dest}"
         run ${pkgs.rsync}/bin/rsync $VERBOSE_ARG \
-          -a --mkpath --copy-links --chmod=Da=rwx,Fa=r \
+          -a --mkpath --copy-links --chmod=Da=rwx,Fa=r --checksum \
           ${src} "$USERPROFILE/${dest}"
       '';
     in ''
       verboseEcho "Syncing windows dotfiles to $USERPROFILE"
       ${lib.strings.concatMapStrings
         (pathPair: formatCmd (builtins.elemAt pathPair 0) (builtins.elemAt pathPair 1))
-        # windowsPathTranslations}
         config.opt.windows.syncPaths}
     '');
   };
