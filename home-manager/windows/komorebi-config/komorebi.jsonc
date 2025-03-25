@@ -1,14 +1,13 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.33/schema.json",
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.35/schema.json",
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "alt_focus_hack": true,
-  "default_workspace_padding": 5,
-  "default_container_padding": 5,
+  "default_workspace_padding": 4,
+  "default_container_padding": 4,
   "resize_delta": 500,
 
-  // Focus Identification
+  // Style
   "border": true,
   "border_width": 4,
   "border_offset": -1,
@@ -25,11 +24,12 @@
   // Animation
   // "animation": {
   //   "enabled": true,
-  //   "fps": 144,
+  //   "fps": 100,
   //   "duration": 100
   // },
 
-  // Monitors
+  // Layout
+  "floating_window_aspect_ratio": "Widescreen",
   "monitors": [
     {
       "window_based_work_area_offset": {
@@ -40,7 +40,7 @@
       },
       "workspaces": [
         {
-          "name": "1",
+          "name": "code",
           "layout": "BSP",
           "initial_workspace_rules": [
             {
@@ -51,11 +51,11 @@
           "apply_window_based_work_area_offset": false
         },
         {
-          "name": "2",
+          "name": "term",
           "layout": "BSP"
         },
         {
-          "name": "3",
+          "name": "web",
           "layout": "BSP",
           "initial_workspace_rules": [
             {
@@ -69,7 +69,7 @@
           ]
         },
         {
-          "name": "4",
+          "name": "chat",
           "layout": "BSP",
           "initial_workspace_rules": [
             {
@@ -83,7 +83,7 @@
           ]
         },
         {
-          "name": "5",
+          "name": "music",
           "layout": "BSP",
           "initial_workspace_rules": [
             {
@@ -97,21 +97,12 @@
           ]
         },
         {
-          "name": "6",
+          "name": "meet",
           "layout": "BSP"
         }
       ]
     }
   ],
-  "monitor_index_preferences": {
-    // Work monitor
-    "0": {
-      "left": 0,
-      "top": 0,
-      "right": 2560,
-      "bottom": 1440
-    }
-  },
 
   // Applications
   "manage_rules": [

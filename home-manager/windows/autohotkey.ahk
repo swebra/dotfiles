@@ -20,20 +20,24 @@ Komorebic(cmd) {
 
 ; Menu Setup
 ; ----------
+StartKomorebi(*) {
+    if (ProcessExist("komorebi.exe")) {
+        TrayTip("Komorebi already running")
+        return
+    }
+    Run('powershell.exe -Command "komorebic start --bar"', , KomorebiHide ? "Hide" : "")
+}
+
+StopKomorebi(*) {
+    Komorebic("stop --bar")
+}
+
 StartYasb(*) {
     if (WinExist(YasbTitle)) {
         TrayTip("Yasb already running")
         return
     }
     Run('powershell.exe -Command "python $Env:USERPROFILE\yasb\src\main.py"', , YasbHide ? "Hide" : "")
-}
-
-StartKomorebi(*) {
-    if (ProcessExist("komorebi.exe")) {
-        TrayTip("Komorebi already running")
-        return
-    }
-    Run('powershell.exe -Command "komorebic start"', , KomorebiHide ? "Hide" : "")
 }
 
 InitMenu() {
@@ -49,15 +53,18 @@ InitMenu() {
 
     A_TrayMenu.Add() ; Line break
 
-    A_TrayMenu.Add("Reload Komorebi config", (*) => Komorebic("reload-configuration"))
     A_TrayMenu.Add("Start komorebi", StartKomorebi)
-    A_TrayMenu.Add("Stop komorebi", (*) => Komorebic("stop"))
+    A_TrayMenu.Add("Restart komorebi", (*) => (
+        StopKomorebi()
+        StartKomorebi()
+    ))
+    A_TrayMenu.Add("Stop komorebi", StopKomorebi)
     A_TrayMenu.Add("Force quit komorebi", (*) => ProcessClose("komorebi.exe"))
 
-    A_TrayMenu.Add() ; Line break
+    ; A_TrayMenu.Add() ; Line break
 
-    A_TrayMenu.Add("Start Yasb", StartYasb)
-    A_TrayMenu.Add("Stop Yasb", (*) => ProcessClose(WinGetPID(YasbTitle)))
+    ; A_TrayMenu.Add("Start Yasb", StartYasb)
+    ; A_TrayMenu.Add("Stop Yasb", (*) => ProcessClose(WinGetPID(YasbTitle)))
 }
 
 ; Windows Lock Remap
@@ -225,12 +232,13 @@ InputTimeTracking() {
 ; Startup Initialization
 ; ======================
 InitMenu()
+StartKomorebi()
 ; StartYasb()
 
 ; =====================
 ; Hotkeys
 ; =====================
-; Disable the Office hyper hotkey with the following registery edit:
+; Disable the Office hyper hotkey with the following registry edit:
 ; REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32
 ; See https://www.autohotkey.com/boards/viewtopic.php?p=389016&sid=9c2303e42961b09efbfad34ca1d62486#p389016
 
@@ -286,10 +294,11 @@ InitMenu()
 ; Stacking ignored
 
 ; Layouts
-#\::Komorebic("cycle-layout next")
-#+\::Komorebic("cycle-layout previous")
+#[::Komorebic("cycle-layout next")
+#]::Komorebic("cycle-layout previous")
 #m::Komorebic("toggle-monocle")
 #f::Komorebic("toggle-float")
+#\::Komorebic("toggle-window-based-work-area-offset")
 
 ; Program Launching
 ; -----------------

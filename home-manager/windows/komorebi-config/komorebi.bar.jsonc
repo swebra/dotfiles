@@ -1,88 +1,93 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.33/schema.bar.json",
-  "monitor": {
-    "index": 0,
-    "work_area_offset": {
-      "left": 0,
-      "top": 40,
-      "right": 0,
-      "bottom": 40
-    }
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.35/schema.bar.json",
+  "monitor": 0,
+  "height": 36,
+  "padding": {
+    "top": 10,
+    "left": 8,
+    "right": 8,
+    "bottom": 5 // Min value without cropping the widget bottoms
   },
-  "position": {
-    "end": {
-      "y": 32,
-      "x": 3440
-    }
+  "grouping": {
+    "kind": "Widget",
+    "rounding": 8,
+    "transparency_alpha": 200
   },
-  "frame": {
-    "inner_margin": {
-      "x": 0,
-      "y": 0
-    }
-  },
-  "font_family": "MesloLGS Nerd Font",
+  "transparency_alpha": 0,
+  "widget_spacing": 6,
   "theme": {
     "palette": "Base16",
     "name": "Onedark",
     "accent": "Base0D"
   },
+  // Non Nerd Font, as NF has some icon collisions with the phosphor icons used by Komorebi
+  "font_family": "Meslo LG S",
   "left_widgets": [
+    {
+      "Update": {
+        "enable": true
+      }
+    },
     {
       "Komorebi": {
         "workspaces": {
           "enable": true,
+          "display": "Text",
           "hide_empty_workspaces": false
         },
         "layout": {
-          "enable": true
+          "enable": true,
+          "display": "Icon"
         },
         "focused_window": {
           "enable": true,
-          "show_icon": true
+          "display": "IconAndTextOnSelected"
         }
+      }
+    }
+  ],
+  "center_widgets": [
+    {
+      "Media": {
+        "enable": true
       }
     }
   ],
   "right_widgets": [
     {
-      "Media": {
-        "enable": true
-      }
-    },
-    {
       "Memory": {
-        "enable": true
+        "enable": true,
+        "label_prefix": "Icon"
       }
     },
     {
       "Cpu": {
-        "enable": true
-      }
-    },
-    {
-      "Network": {
         "enable": true,
-        "show_total_data_transmitted": false,
-        "show_network_activity": false
+        "label_prefix": "Icon"
       }
     },
     {
       "Battery": {
-        "enable": true
+        "enable": true,
+        "hide_on_full_charge": true
       }
     },
     {
       "Date": {
         "enable": true,
-        "format": "DayDateMonthYear"
+        "format": {
+          "Custom": "%F %R UTC"
+        },
+        "timezone": "Etc/UTC"
       }
     },
     {
       "Time": {
         "enable": true,
-        "format": "TwelveHour",
-        "label_prefix": "None"
+        "format": {
+          "Custom": "%a. %b %d | %I:%M"
+        },
+        "changing_icon": true
       }
     }
   ]
