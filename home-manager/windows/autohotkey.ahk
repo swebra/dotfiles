@@ -53,13 +53,14 @@ InitMenu() {
 
     A_TrayMenu.Add() ; Line break
 
-    A_TrayMenu.Add("Start komorebi", StartKomorebi)
     A_TrayMenu.Add("Restart komorebi", (*) => (
         StopKomorebi()
         StartKomorebi()
     ))
+    A_TrayMenu.Add("Start komorebi", StartKomorebi)
     A_TrayMenu.Add("Stop komorebi", StopKomorebi)
     A_TrayMenu.Add("Force quit komorebi", (*) => ProcessClose("komorebi.exe"))
+    A_TrayMenu.Add("Open komorebi GUI", (*) => Komorebic("gui"))
 
     ; A_TrayMenu.Add() ; Line break
 

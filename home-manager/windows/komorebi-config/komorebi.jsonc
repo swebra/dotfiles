@@ -1,6 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.35/schema.json",
-  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
+  "app_specific_configuration_path": [
+    "$Env:USERPROFILE/applications.json",
+    "$Env:USERPROFILE/custom-applications.json"
+  ],
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "default_workspace_padding": 4,
@@ -101,29 +104,6 @@
           "layout": "BSP"
         }
       ]
-    }
-  ],
-
-  // Applications
-  "manage_rules": [
-    [
-      {
-        "id": "ConfMultiTabContentWndClass",
-        "kind": "Class",
-        "matching_strategy": "Equals"
-      },
-      {
-        "id": "Zoom.exe",
-        "kind": "Exe",
-        "matching_strategy": "Equals"
-      }
-    ]
-  ],
-  "ignore_rules": [
-    {
-      "kind": "Title",
-      "id": "Meeting compact view | ",
-      "matching_strategy": "StartsWith"
     }
   ]
 }
