@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-    home.packages = [ pkgs.discord ];
+  home.packages = [pkgs.discord];
 }
