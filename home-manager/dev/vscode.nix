@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   config = lib.mkMerge [
@@ -8,9 +9,12 @@
     (lib.mkIf config.myHome.gui.enable {
       programs.vscode = {
         enable = true;
+        extensions = with pkgs.vscode-extensions; [
+          jnoortheen.nix-ide
+        ];
+
       };
 
-      # TODO: make option for dotfiles clone location
       xdg.configFile = let
         parentDir = "${config.myHome.dotfilesDir}/home-manager/dev";
         mkOutOfStoreSymlink = path: config.lib.file.mkOutOfStoreSymlink "${parentDir}/${path}";
