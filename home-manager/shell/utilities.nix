@@ -20,10 +20,12 @@
 
   programs.fastfetch = {
     enable = true;
+    package = pkgs.emptyDirectory; # Don't need permanently installed, just keep the config
     settings.modules = [
       "title"
       "separator"
 
+      # Hardware
       "os"
       "kernel"
       "uptime"
@@ -37,6 +39,7 @@
       # "wm"
       "terminalfont"
 
+      # Software
       "break"
       {
         type = "cpu";
@@ -56,6 +59,7 @@
       "memory"
       "disk"
 
+      # Other
       "break"
       "datetime"
       "break"
