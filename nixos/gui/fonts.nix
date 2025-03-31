@@ -1,6 +1,14 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   fonts.packages = with pkgs; [
-    # TODO: Change to `nerds-fonts.meslo-lg` in 25.05
-    (nerdfonts.override {fonts = ["Meslo"];})
+    # TODO: Cleanup after moving everthing to 25.05
+    (
+      if (lib.trivial.release == "24.11")
+      then (nerdfonts.override {fonts = ["Meslo"];})
+      else nerd-fonts.meslo-lg
+    )
   ];
 }
