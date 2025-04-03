@@ -3,8 +3,6 @@
 ; =======================
 ; Configuration Variables
 ; =======================
-YasbTitle := "YasbBar"
-YasbHide := true
 KomorebiHide := true
 
 
@@ -32,14 +30,6 @@ StopKomorebi() {
     Komorebic("stop --bar")
 }
 
-StartYasb(*) {
-    if (WinExist(YasbTitle)) {
-        TrayTip("Yasb already running")
-        return
-    }
-    Run('powershell.exe -Command "python $Env:USERPROFILE\yasb\src\main.py"', , YasbHide ? "Hide" : "")
-}
-
 InitMenu() {
     A_TrayMenu.Delete()
     A_TrayMenu.Add("Reload AHK config", (*) => Reload())
@@ -65,11 +55,6 @@ InitMenu() {
     A_TrayMenu.Add("Stop komorebi", (*) => StopKomorebi())
     A_TrayMenu.Add("Force quit komorebi", (*) => ProcessClose("komorebi.exe"))
     A_TrayMenu.Add("Open komorebi GUI", (*) => Komorebic("gui"))
-
-    ; A_TrayMenu.Add() ; Line break
-
-    ; A_TrayMenu.Add("Start Yasb", StartYasb)
-    ; A_TrayMenu.Add("Stop Yasb", (*) => ProcessClose(WinGetPID(YasbTitle)))
 }
 
 ; Windows Lock Remap
@@ -238,7 +223,6 @@ InputTimeTracking() {
 ; ======================
 InitMenu()
 StartKomorebi()
-; StartYasb()
 
 ; =====================
 ; Hotkeys
