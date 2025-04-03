@@ -20,15 +20,15 @@ Komorebic(cmd) {
 
 ; Menu Setup
 ; ----------
-StartKomorebi(*) {
+StartKomorebi(args := "") {
     if (ProcessExist("komorebi.exe")) {
         TrayTip("Komorebi already running")
         return
     }
-    Run('powershell.exe -Command "komorebic start --bar"', , KomorebiHide ? "Hide" : "")
+    Run('powershell.exe -Command "komorebic start --bar ' args '"', , KomorebiHide ? "Hide" : "")
 }
 
-StopKomorebi(*) {
+StopKomorebi() {
     Komorebic("stop --bar")
 }
 
@@ -57,8 +57,12 @@ InitMenu() {
         StopKomorebi()
         StartKomorebi()
     ))
-    A_TrayMenu.Add("Start komorebi", StartKomorebi)
-    A_TrayMenu.Add("Stop komorebi", StopKomorebi)
+    A_TrayMenu.Add("Restart komorebi w/o state", (*) => (
+        StopKomorebi()
+        StartKomorebi("--clean-state")
+    ))
+    A_TrayMenu.Add("Start komorebi", (*) => StartKomorebi())
+    A_TrayMenu.Add("Stop komorebi", (*) => StopKomorebi())
     A_TrayMenu.Add("Force quit komorebi", (*) => ProcessClose("komorebi.exe"))
     A_TrayMenu.Add("Open komorebi GUI", (*) => Komorebic("gui"))
 
