@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.prusa-slicer];
+{pkgs-unstable, ...}: {
+  home.packages = [pkgs-unstable.prusa-slicer];
 }

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }: {
@@ -14,7 +15,8 @@
 
       programs.vscode = {
         enable = true;
-        # Note: sometimes installing requires vscode restart
+        package = pkgs-unstable.vscode;
+        # Note: extension changes sometimes requires vscode restart
         extensions =
           (with pkgs.vscode-marketplace; [
             zhuangtongfa.material-theme
