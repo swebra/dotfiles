@@ -12,8 +12,6 @@
     gaming.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   # TODO: Abstract most of this
 
   users.users.${config.opt.user} = {

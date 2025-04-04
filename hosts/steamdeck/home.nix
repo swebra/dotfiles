@@ -4,8 +4,6 @@
     gui.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   # Home-manager config
   home.username = "deck";
   home.homeDirectory = "/home/${config.home.username}";

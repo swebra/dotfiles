@@ -1,11 +1,10 @@
 {...} @ inputs: let
   myLib = import ../myLib inputs;
+  optionNamespace = "myOS";
 in {
-  imports = myLib.recursiveOptionedImport ["myOS"] ./.;
+  imports = myLib.recursiveOptionedImport [optionNamespace] ./.;
 
-  config = {
-    myOS = {
-      nix.enable = true;
-    };
+  config.${optionNamespace} = {
+    nix.enable = true;
   };
 }

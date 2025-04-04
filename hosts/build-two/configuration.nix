@@ -12,8 +12,6 @@
     gaming.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   hardware.bluetooth.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
