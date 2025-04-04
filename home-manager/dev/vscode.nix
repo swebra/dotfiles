@@ -15,23 +15,25 @@
       programs.vscode = {
         enable = true;
         # Note: sometimes installing requires vscode restart
-        extensions = with pkgs.vscode-marketplace; [
-          zhuangtongfa.material-theme
+        extensions =
+          (with pkgs.vscode-marketplace; [
+            zhuangtongfa.material-theme
 
-          medo64.render-crlf
-          stkb.rewrap
-          streetsidesoftware.code-spell-checker
+            medo64.render-crlf
+            streetsidesoftware.code-spell-checker
 
-          github.copilot
-          github.copilot-chat
-
-          tamasfe.even-better-toml
-          redhat.vscode-yaml
-          jnoortheen.nix-ide
-          ms-python.vscode-pylance
-          ms-python.debugpy
-          charliermarsh.ruff
-        ];
+            tamasfe.even-better-toml
+            redhat.vscode-yaml
+            jnoortheen.nix-ide
+            ms-python.vscode-pylance
+            ms-python.debugpy
+            charliermarsh.ruff
+          ])
+          ++ (with pkgs.vscode-marketplace-release; [
+            stkb.rewrap
+            github.copilot
+            github.copilot-chat
+          ]);
       };
 
       xdg.configFile = let
