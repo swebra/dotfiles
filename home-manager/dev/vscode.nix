@@ -2,17 +2,36 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   config = lib.mkMerge [
     # Manage VSCode app if gui.enabled
     (lib.mkIf config.myHome.gui.enable {
+      nixpkgs.overlays = [
+        inputs.nix-vscode-extensions.overlays.default
+      ];
+
       programs.vscode = {
         enable = true;
-        extensions = with pkgs.vscode-extensions; [
-          jnoortheen.nix-ide
-        ];
+        # Note: sometimes installing requires vscode restart
+        extensions = with pkgs.vscode-marketplace; [
+          zhuangtongfa.material-theme
 
+          medo64.render-crlf
+          stkb.rewrap
+          streetsidesoftware.code-spell-checker
+
+          github.copilot
+          github.copilot-chat
+
+          tamasfe.even-better-toml
+          redhat.vscode-yaml
+          jnoortheen.nix-ide
+          ms-python.vscode-pylance
+          ms-python.debugpy
+          charliermarsh.ruff
+        ];
       };
 
       xdg.configFile = let

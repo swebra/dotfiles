@@ -12,6 +12,11 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Community zen-browser before it's in official repos
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
