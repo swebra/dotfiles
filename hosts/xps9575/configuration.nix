@@ -20,7 +20,6 @@
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
-      dolphin-emu
     ];
   };
 

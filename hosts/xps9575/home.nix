@@ -2,6 +2,7 @@
   myHome = {
     dev.enable = true;
     gui.enable = true;
+    gaming.enable = true;
   };
 
   # Home-manager config
