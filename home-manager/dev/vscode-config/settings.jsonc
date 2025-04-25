@@ -60,6 +60,18 @@
   // Behavior
   "workbench.list.defaultFindMode": "filter",
   "explorer.confirmDragAndDrop": false,
+  "files.exclude": {
+    "**/.direnv": true,
+    "**/__pycache__": true,
+    "**/.ruff_cache": true,
+    "**/.pytest_cache": true,
+  },
+  "search.useIgnoreFiles": true,
+  "search.useGlobalIgnoreFiles": true,
+  "explorer.autoRevealExclude": {
+    "**/.venv": true
+  },
+
   // General Extension Settings
   // ==========================
   // streetsidesoftware.code-spell-checker
