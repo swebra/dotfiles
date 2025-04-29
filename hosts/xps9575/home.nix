@@ -3,6 +3,7 @@
     dev.enable = true;
     gui.enable = true;
     gaming.enable = true;
+    htpc.enable = true;
   };
 
   # Home-manager config
