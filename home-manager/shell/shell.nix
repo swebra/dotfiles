@@ -36,6 +36,7 @@
 
     shellAliases = {
       dc = "docker compose";
+      dcu = "dc build && dc up -w";
     };
 
     # Ignore duplicate commands and space-prefix commands in history
