@@ -1,7 +1,13 @@
 {config, ...}: {
   myHome = {
-    dev.enable = true;
-    gui.enable = true;
+    dev = {
+      enable = true;
+      vscode-gui.enable = true;
+    };
+    gui = {
+      alacritty.enable = true;
+      zen-browser.enable = true;
+    };
   };
 
   # Home-manager config
