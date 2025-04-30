@@ -6,9 +6,22 @@
   inputs,
   ...
 }: {
+  options = {
+    myHome.dev.vscode-gui.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.myHome.gui.enable;
+      description = ''
+        Whether to enable the VSCode GUI application and its configuration. Defaults to the same
+        value as `myHome.gui.enable` when not explicitly set. When false, the
+        `myHome.dev.vscode.enable` setting still controls VSCode-related non-GUI config like git
+        configuration.
+      '';
+    };
+  };
+
   config = lib.mkMerge [
-    # Manage VSCode app if gui.enabled
-    (lib.mkIf config.myHome.gui.enable {
+    # Manage VSCode app if gui is generally enabled or if vscode-gui is explicitly enabled
+    (lib.mkIf config.myHome.dev.vscode-gui.enable {
       nixpkgs.overlays = [
         inputs.nix-vscode-extensions.overlays.default
       ];
