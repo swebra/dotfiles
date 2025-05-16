@@ -10,7 +10,7 @@
   # TODO: Generate from options? SRM logs errors when read only file, but might be fine anyways
   # Current configuration is user-specific
   xdg.configFile."steam-rom-manager/userData/userConfigurations.json".source = let
-    parentDir = "${config.myHome.dotfilesDir}/home-manager/htpc";
+    parentDir = "${config.myHome.dotfilesDir}/home-manager/gaming/emulation";
     mkOutOfStoreSymlink = path: config.lib.file.mkOutOfStoreSymlink "${parentDir}/${path}";
   in
     mkOutOfStoreSymlink "steam-rom-manager-config.json";
