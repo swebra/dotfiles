@@ -15,7 +15,7 @@
 
   # WSL support
   wsl.enable = true;
-  wsl.defaultUser = config.opt.user;
+  wsl.defaultUser = config.myOS.user;
   networking.hostName = "wsl";
 
   # Provide libraries for VSCode remote

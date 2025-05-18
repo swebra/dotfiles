@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    opt.windows.syncPaths = lib.mkOption {
+    myHome.windows.syncPaths = lib.mkOption {
       type = with lib.types; listOf (listOf (oneOf [str path]));
       default = [];
       description = ''
@@ -66,7 +66,7 @@
       verboseEcho "Syncing windows dotfiles to $USERPROFILE"
       ${lib.strings.concatMapStrings
         (pathPair: formatCmd (builtins.elemAt pathPair 0) (builtins.elemAt pathPair 1))
-        config.opt.windows.syncPaths}
+        config.myHome.windows.syncPaths}
     '');
   };
 }

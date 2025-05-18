@@ -1,6 +1,6 @@
 # Managing Windows dotfiles with home-manager + WSL
 ## How it works
-[`sync-windows-dotfiles.nix`](./sync-windows-dotfiles.nix) defines a `opt.windows.syncPaths` option, and an activation script consuming said option. Source-destination path pairs specified in `opt.windows.syncPaths` are used to generate `rsync` expressions that when evaluated on home-manager activation, copy files from within WSL to a location in the Windows user directory (`C:\Users\username`). The copied files can be from this repo, the nix store, or home-manager-generated files in the Linux home directory.
+[`sync-windows-dotfiles.nix`](./sync-windows-dotfiles.nix) defines a `myHome.windows.syncPaths` option, and an activation script consuming said option. Source-destination path pairs specified in `myHome.windows.syncPaths` are used to generate `rsync` expressions that when evaluated on home-manager activation, copy files from within WSL to a location in the Windows user directory (`C:\Users\username`). The copied files can be from this repo, the nix store, or home-manager-generated files in the Linux home directory.
 
 Note this breaks reproducibility by allowing interaction with files not copied to the store, and creating non-symlink files not in the store.
 

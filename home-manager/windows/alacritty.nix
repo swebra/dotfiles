@@ -25,7 +25,7 @@
     };
   };
 
-  opt.windows.syncPaths = [
+  myHome.windows.syncPaths = [
     ["${config.xdg.configHome}/alacritty/alacritty.toml" "AppData/Roaming/alacritty/alacritty.toml"]
   ];
 }
