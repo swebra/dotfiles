@@ -14,9 +14,9 @@
 
   # TODO: Abstract most of this
 
-  users.users.${config.opt.user} = {
+  users.users.${config.myOS.user} = {
     isNormalUser = true;
-    description = config.opt.user;
+    description = config.myOS.user;
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
@@ -72,7 +72,7 @@
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = config.opt.user;
+  services.displayManager.autoLogin.user = config.myOS.user;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
