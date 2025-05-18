@@ -5,7 +5,6 @@
       vscode-gui.enable = true;
     };
     gui = {
-      alacritty.enable = true;
       zen-browser.enable = true;
     };
   };
