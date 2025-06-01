@@ -94,7 +94,7 @@
         "parserType": "Glob",
         "configTitle": "Nintendo Wii - Dolphin",
         "steamDirectory": "${steamdirglobal}",
-        "romDirectory": "${romsdirglobal}/wii/",
+        "romDirectory": "${romsdirglobal}/roms/wii/",
         "steamCategories": [
             "Wii"
         ],
@@ -180,9 +180,9 @@
     },
     {
         "parserType": "Glob",
-        "configTitle": "Nintendo Switch - Yuzu",
+        "configTitle": "Nintendo Switch - Eden",
         "steamDirectory": "${steamdirglobal}",
-        "romDirectory": "${romsdirglobal}/switch",
+        "romDirectory": "${romsdirglobal}/roms/switch",
         "steamCategories": [
             "Switch"
         ],
@@ -203,7 +203,7 @@
             ]
         },
         "executable": {
-            "path": "/home/eric/.nix-profile/bin/yuzu",
+            "path": "/home/eric/.nix-profile/bin/eden",
             "shortcutPassthrough": false,
             "appendArgsToExecutable": true
         },
