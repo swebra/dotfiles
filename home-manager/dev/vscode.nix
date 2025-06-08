@@ -30,7 +30,7 @@
         enable = true;
         package = pkgs-unstable.vscode;
         # Note: extension changes sometimes requires vscode restart
-        extensions =
+        profiles.default.extensions =
           (with pkgs.vscode-marketplace; [
             zhuangtongfa.material-theme
 

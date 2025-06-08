@@ -2,11 +2,11 @@
   description = "swebra's NixOS/home-manager configuration flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,12 +27,7 @@
   outputs = {...} @ inputs:
     with (import ./myLib/make-outputs.nix inputs); {
       nixosConfigurations = {
-        # Temporarily build with unstable for mesa 25's 9070 XT support
-        build-two = inputs.nixpkgs-unstable.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {inherit inputs;};
-          modules = [./hosts/build-two/configuration.nix ./nixos];
-        };
+        build-two = makeSystem "x86_64-linux" ./hosts/build-two/configuration.nix;
         the-cube = makeSystem "x86_64-linux" ./hosts/the-cube/configuration.nix;
         xps9575 = makeSystem "x86_64-linux" ./hosts/xps9575/configuration.nix;
         wsl = makeSystem "x86_64-linux" ./hosts/wsl/configuration.nix;
