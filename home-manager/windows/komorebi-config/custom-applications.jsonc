@@ -1,10 +1,23 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.asc.json",
   "Zoom": {
-    // Built-in configuration ignores everything, this adds management of the main meeting window
+    // Built-in configuration ignores everything for Zoom
     // https://github.com/LGUG2Z/komorebi-application-specific-configuration/issues/138
     "manage": [
-      [
+      [  // Main Zoom app (pre meeting)
+        {
+          "kind": "Exe",
+          "id": "Zoom.exe",
+          "matching_strategy": "Equals"
+        },
+        {
+
+          "kind": "Class",
+          "id": "ZPPTMainFrmWndClassEx",
+          "matching_strategy": "Equals"
+        }
+      ],
+      [  // Main Zoom meeting window
         {
           "kind": "Exe",
           "id": "Zoom.exe",
@@ -15,37 +28,8 @@
           "id": "ConfMultiTabContentWndClass",
           "matching_strategy": "Equals"
         }
-      ]
-    ]
-  },
-  // Trying to handle teams mini window while screen sharing, doesn't yet work
-  "Microsoft Teams": {
-    "ignore": [
-      [
-        {
-          "kind": "Class",
-          "id": "TeamsWebView",
-          "matching_strategy": "Equals"
-        },
-        {
-          "kind": "Title",
-          "id": "Meeting compact view |",
-          "matching_strategy": "StartsWith"
-        }
       ],
-      [
-        {
-          "kind": "Class",
-          "id": "TeamsWebView",
-          "matching_strategy": "Equals"
-        },
-        {
-          "kind": "Title",
-          "id": "Microsoft Teams",
-          // TODO: Make equals
-          "matching_strategy": "StartsWith"
-        }
-      ]
+
     ]
   }
 }
