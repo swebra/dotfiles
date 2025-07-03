@@ -19,8 +19,7 @@
   "editor.fontFamily": "'MesloLGS Nerd Font', monospace",
   "editor.fontSize": 14,
   "editor.rulers": [
-    80,
-    100
+    88
   ],
   "editor.renderWhitespace": "selection",
   "code-eol.crlfCharacter": "¤¬",
