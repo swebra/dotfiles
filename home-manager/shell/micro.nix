@@ -7,6 +7,7 @@
       softwrap = true;
       tabmovement = true;
       tabstospaces = true;
+      clipboard = "terminal"; # Requires OSC52 support in terminal
     };
   };
 
