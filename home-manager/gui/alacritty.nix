@@ -42,6 +42,8 @@
         };
       };
       cursor.style.shape = "Beam";
+      # Allow clipboard access for things like micro editor
+      terminal.osc52 = "CopyPaste";
     };
   };
 }
