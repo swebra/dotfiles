@@ -34,6 +34,8 @@
           (with pkgs.vscode-marketplace; [
             zhuangtongfa.material-theme
 
+            ms-vscode-remote.remote-ssh
+
             medo64.render-crlf
             streetsidesoftware.code-spell-checker
 
