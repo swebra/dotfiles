@@ -32,6 +32,7 @@
     extraConfig = {
       diff.colorMoved = "default";
       merge.conflictStyle = "zdiff3";
+      push.followTags = true;
     };
 
     delta = {
