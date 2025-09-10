@@ -107,7 +107,7 @@
     "editor.tabSize": 2,
   },
   // Lisp
-  "[lisp]": {
+  "[dwlisp]": {
     "editor.tabSize": 2,
   },
   // Nix
