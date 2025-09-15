@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/release-25.05";
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
