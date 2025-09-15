@@ -90,6 +90,7 @@
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
   },
+  "ruff.configurationPreference": "filesystemFirst",
   // JSON
   "[json]": {
     "editor.tabSize": 2,
