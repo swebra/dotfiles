@@ -10,7 +10,7 @@
   myOS = {
     gui.enable = true;
     gaming.enable = true;
-    htpc.steam-gamescope.enable = true;
+    htpc.enable = true;
   };
 
   users.users.${config.myOS.user} = {
@@ -39,7 +39,7 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [rtl8821au];
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
