@@ -8,9 +8,7 @@
   ];
 
   myOS = {
-    services.docker.enable = true;
-    services.postgres.enable = true;
-    services.valkey.enable = true;
+    dev.enable = true;
   };
 
   # WSL support
