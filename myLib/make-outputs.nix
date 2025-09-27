@@ -15,6 +15,7 @@ in {
       specialArgs = {
         inherit inputs;
         pkgs-unstable = getPkgsUnstable arch;
+        private = inputs.private;
       };
       modules = [configModule ../nixos];
     };
