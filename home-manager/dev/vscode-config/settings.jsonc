@@ -79,6 +79,7 @@
     "Drivewyze",
     "geofence"
   ],
+  "remote.autoForwardPorts": false,
   // Language Settings
   // =================
   // Markdown
@@ -131,5 +132,5 @@
   },
   // WIP unsorted
   "window.menuBarVisibility": "toggle",
-  "workbench.activityBar.location": "bottom",
+  "workbench.activityBar.location": "bottom"
 }
