@@ -1,4 +1,0 @@
-- Rename `nix-vscode-extensions`
-- Look at using `follows` to reduce the number of duplicate dependencies in the lockfile
-- Change SSH config
-- Have accurate home manager state version?
