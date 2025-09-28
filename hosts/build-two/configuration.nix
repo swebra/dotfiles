@@ -10,6 +10,7 @@
   myOS = {
     gui.enable = true;
     gaming.enable = true;
+    dev.docker.enable = true;
   };
 
   hardware.bluetooth.enable = true;
