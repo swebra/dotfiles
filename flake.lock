@@ -201,10 +201,10 @@
     },
     "private": {
       "locked": {
-        "lastModified": 1758979641,
-        "narHash": "sha256-kt5Zx+rDfuphtBqVETOFQ07TyhWXjPKffJJG3WNEXCs=",
+        "lastModified": 1759890239,
+        "narHash": "sha256-HWzbexI7dlNnewoIVWY4mrkFiFgefbE0VwqCPEB53Ew=",
         "ref": "main",
-        "rev": "4c1bd95f56895d378c00eba5b6c2f62bf67ff3c6",
+        "rev": "fe4696b1512b80358146ce1e0c2e86e8ca6aec82",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/swebra/dotfiles-private"
