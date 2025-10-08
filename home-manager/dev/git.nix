@@ -1,13 +1,14 @@
 {
-  pkgs,
   lib,
+  pkgs,
+  private,
   ...
 }: {
   programs.git = {
     enable = true;
 
     userName = "swebra";
-    userEmail = "eric@swebra.com";
+    userEmail = private.personal.email;
 
     aliases = {
       st = "status";
