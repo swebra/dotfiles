@@ -25,8 +25,23 @@
     # TODO: use secret management
     environmentFile = "/etc/caddy/caddy.env";
 
+    # Catch all unhandled domains
+    virtualHosts."*.${private.server.domain}".extraConfig = ''
+      error * 404
+      handle_errors {
+        redir https://${private.server.domain}/404.html
+      }
+    '';
+
     virtualHosts."julia.internal".extraConfig = ''
       respond "Hello, world! Working from local network on port 443!"
     '';
   };
 }
+# TODO:
+# - cloudflare trusted proxy settings
+#   - https://github.com/WeidiDeng/caddy-cloudflare-ip
+#   - https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/#caddy
+#   - https://www.cloudflare.com/en-ca/ips/
+#   - https://caddyserver.com/docs/caddyfile/options#trusted-proxies
+
