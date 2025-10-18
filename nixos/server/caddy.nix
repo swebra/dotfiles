@@ -23,7 +23,7 @@
 
     # Contains `CF_API_TOKEN=my_token`
     # TODO: use secret management
-    environmentFile = "/run/secrets/caddy.env";
+    environmentFile = "/etc/caddy/caddy.env";
 
     virtualHosts."julia.internal".extraConfig = ''
       respond "Hello, world! Working from local network on port 443!"
