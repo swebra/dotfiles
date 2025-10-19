@@ -1,9 +1,9 @@
-{private, ...}: {
+{...}: {
   # services.jellyfin = {
   #   enable = true;
   # };
 
-  services.caddy.virtualHosts."jellyfin.${private.server.domain}".extraConfig = ''
+  myOS.server.caddy.subdomain."jellyfin" = ''
     reverse_proxy http://192.168.1.100:8096
   '';
 }

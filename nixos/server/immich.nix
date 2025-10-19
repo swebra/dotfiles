@@ -1,8 +1,4 @@
-{
-  config,
-  private,
-  ...
-}: {
+{config, ...}: {
   # systemctl status immich-server
 
   services.immich = {
@@ -10,7 +6,11 @@
     host = "127.0.0.1"; # listen on IPv4
   };
 
-  services.caddy.virtualHosts."photos.${private.server.domain}".extraConfig = ''
+  # myOS.server.caddy.subdomain."photos" = ''
+  #   reverse_proxy http://localhost:${builtins.toString config.services.immich.port}
+  # '';
+
+  services.caddy.virtualHosts."julia.internal".extraConfig = ''
     reverse_proxy http://localhost:${builtins.toString config.services.immich.port}
   '';
 }
