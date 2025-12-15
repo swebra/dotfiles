@@ -67,7 +67,7 @@
       programs.git = {
         ignores = [".vscode"];
 
-        extraConfig = {
+        settings = {
           diff.tool = "vscode";
           difftool = {
             prompt = false;

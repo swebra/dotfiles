@@ -13,9 +13,9 @@
 
   programs = {
     # Work gitconfig
-    git = {
-      userName = lib.mkForce "Eric Claerhout";
-      userEmail = lib.mkForce private.work.email;
+    git.settings.user = {
+      name = lib.mkForce "Eric Claerhout";
+      email = lib.mkForce private.work.email;
     };
 
     # Windows doesn't support OSC52

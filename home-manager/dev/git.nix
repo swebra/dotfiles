@@ -7,42 +7,36 @@
   programs.git = {
     enable = true;
 
-    userName = "swebra";
-    userEmail = private.personal.email;
+    settings = {
+      user = {
+        name = "swebra";
+        email = private.personal.email;
+      };
 
-    aliases = {
-      st = "status";
-      l = "log --oneline --decorate --date=short --graph";
-      d = "diff";
-      ds = "diff --staged";
-      a = "add";
-      cm = "commit";
-      cmm = "commit -m";
-      co = "checkout";
-      cob = "checkout -b";
-      p = "push";
-      pu = "push -u origin HEAD";
-      pf = "push --force-with-lease";
+      alias = {
+        st = "status";
+        l = "log --oneline --decorate --date=short --graph";
+        d = "diff";
+        ds = "diff --staged";
+        a = "add";
+        cm = "commit";
+        cmm = "commit -m";
+        co = "checkout";
+        cob = "checkout -b";
+        p = "push";
+        pu = "push -u origin HEAD";
+        pf = "push --force-with-lease";
+      };
+
+      diff.colorMoved = "default";
+      merge.conflictStyle = "zdiff3";
+      push.followTags = true;
     };
 
     ignores = [
       ".eric" # Notes
       ".venv" # Python
     ];
-
-    extraConfig = {
-      diff.colorMoved = "default";
-      merge.conflictStyle = "zdiff3";
-      push.followTags = true;
-    };
-
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        map-styles = "bold purple => syntax purple, bold cyan => syntax cyan";
-      };
-    };
 
     hooks = let
       runLocalHookLib = pkgs.python3Packages.buildPythonPackage {
@@ -73,6 +67,15 @@
       pre-push = runLocalHook;
       pre-rebase = runLocalHook;
       prepare-commit-msg = prepareCommitMsg;
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      map-styles = "bold purple => syntax purple, bold cyan => syntax cyan";
     };
   };
 

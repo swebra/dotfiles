@@ -34,8 +34,8 @@
     services.caddy = {
       enable = true;
       package = pkgs.caddy.withPlugins {
-        plugins = ["github.com/caddy-dns/cloudflare@v0.2.1"];
-        hash = "sha256-p9AIi6MSWm0umUB83HPQoU8SyPkX5pMx989zAi8d/74=";
+        plugins = ["github.com/caddy-dns/cloudflare@v0.2.2"];
+        hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
       };
 
       email = private.personal.email;
