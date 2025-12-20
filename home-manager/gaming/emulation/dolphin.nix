@@ -1,25 +1,20 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
+  # https://emudeck.github.io/emulators/steamos/dolphin/
+  # https://wiki.retrobat.org/systems-and-emulators/supported-game-systems/game-consoles/nintendo-game-consoles/wii
+  # https://wiki.retrobat.org/systems-and-emulators/supported-game-systems/game-consoles/nintendo-game-consoles/gamecube
+
   home.packages = [pkgs.dolphin-emu];
 
-  # TODO: Setup paths
-
-  # Roms:
+  # Roms can be targeted directly at
   # ~/Games/Emulation/roms/gc
   # ~/Games/Emulation/roms/wii
 
-  # /home/eric/.local/share/dolphin-emu/Wii/
+  myHome.gaming.emulation.syncPaths = let
+    parent = ".local/share/dolphin-emu";
+  in {
+    "${parent}/Wii/" = "saves/wii";
+    "${parent}/GC/" = "saves/gc";
 
-  # TODO: Direction of symlink
-
-  # xdg.configFile = let
-  #   parentDir = "${config.myHome.dotfilesDir}/home-manager/dev";
-  #   mkOutOfStoreSymlink = path: config.lib.file.mkOutOfStoreSymlink "${parentDir}/${path}";
-  # in {
-  #   "Code/User/settings.json".source = mkOutOfStoreSymlink "vscode-config/settings.jsonc";
-  #   "Code/User/keybindings.json".source = mkOutOfStoreSymlink "vscode-config/keybindings.jsonc";
-  # };
+    "${parent}/GameSettings/" = "otherData/dolphin/gameSettings";
+  };
 }
