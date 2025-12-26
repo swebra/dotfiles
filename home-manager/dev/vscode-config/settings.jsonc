@@ -70,6 +70,7 @@
   "explorer.autoRevealExclude": {
     "**/.venv": true
   },
+  "terminal.integrated.suggest.enabled": false,
 
   // General Extension Settings
   // ==========================
