@@ -51,7 +51,7 @@
         devices = {
           "memoryhole" = {
             addresses = ["tcp://memoryhole:22000"];
-            id = "GU7AVMS-OZZSGMB-6JR4IRR-FNJU3X7-E2AC7JC-PHSO3JY-XMVOUM3-ZELGKAS";
+            id = "7RWTI5N-O3IYKD3-HBVV257-W3CMNYZ-JGXBOQG-TVY5EQ3-AU2KLBP-QR2IHAQ";
           };
         };
         # Accept emulation folder from memoryhole
