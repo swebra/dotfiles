@@ -7,8 +7,8 @@
     myHome.gaming.emulation = {
       basePath = lib.mkOption {
         type = lib.types.str;
-        default = "${config.home.homeDirectory}/Games/Emulation";
         description = "Base path for emulation-related files.";
+        default = "${config.home.homeDirectory}/Games/Emulation";
       };
 
       syncPaths = lib.mkOption {
@@ -19,27 +19,75 @@
         '';
         default = {};
       };
+
+      manifests = lib.mkOption {
+        type = lib.types.attrsOf (lib.types.submodule {
+          options = {
+            target = lib.mkOption {
+              type = lib.types.str;
+              description = "Target executable or file path.";
+            };
+            startIn = lib.mkOption {
+              type = lib.types.str;
+              default = "";
+              description = "Working directory for the application.";
+            };
+            launchOptions = lib.mkOption {
+              type = lib.types.str;
+              default = "";
+              description = "Additional launch options or arguments.";
+            };
+            appendArgsToExecutable = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = "Whether to append launchOptions to the executable path.";
+            };
+          };
+        });
+        description = "Steam ROM Manager manifests for opening the emulators itself";
+        default = {};
+      };
     };
   };
 
   config = {
-    # Create a symlinks for each mapping in emulation.syncPaths
     home.file = let
       basePath = config.myHome.gaming.emulation.basePath;
-    in
-      lib.mapAttrs' (
-        emuPath: syncPath:
-          lib.nameValuePair "${config.home.homeDirectory}/${emuPath}" {
-            source = config.lib.file.mkOutOfStoreSymlink "${basePath}/${syncPath}";
-          }
-      )
-      config.myHome.gaming.emulation.syncPaths;
 
-    # TODO:
-    # - Add manifest support
-    # - Check if they (symlinks) are synced by syncthing, if not end here
-    # - Check if .stignore file is synced, if so create one to ignore manifests and end here
-    # - Otherwise declaratively create .stignore in nix
+      # Create a symlink for each mapping in emulation.syncPaths
+      syncPathSymlinks =
+        lib.mapAttrs' (
+          emuPath: syncPath:
+            lib.nameValuePair "${config.home.homeDirectory}/${emuPath}" {
+              source = config.lib.file.mkOutOfStoreSymlink "${basePath}/${syncPath}";
+            }
+        )
+        config.myHome.gaming.emulation.syncPaths;
+
+      # Create a manifest file for each mapping in emulation.manifests
+      manifestFiles =
+        lib.mapAttrs' (
+          name: manifest:
+            lib.nameValuePair "${basePath}/manifests/${name}.json" {
+              text = builtins.toJSON {
+                title = name;
+                target = manifest.target;
+                startIn = manifest.startIn;
+                launchOptions = manifest.launchOptions;
+                appendArgsToExecutable = manifest.appendArgsToExecutable;
+              };
+            }
+        )
+        config.myHome.gaming.emulation.manifests;
+
+      # Ignore those manifest files in syncthing
+      stignore = {
+        "${basePath}/.stignore".text = ''
+          manifests/
+        '';
+      };
+    in
+      syncPathSymlinks // manifestFiles // stignore;
 
     services.syncthing = {
       enable = true;
