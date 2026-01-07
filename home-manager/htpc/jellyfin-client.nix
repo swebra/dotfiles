@@ -7,10 +7,8 @@
     jellyfin-media-player
   ];
 
-  # Tie into steam-rom-manager
-  # TODO: Create steam-rom-manager module
-  home.file."Games/Emulation/manifests/jellyfin.json".text = builtins.toJSON {
-    title = "Jellyfin";
+  # Tie into steam rom manager
+  myHome.gaming.emulation.manifests.jellyfin = {
     target = "${config.home.homeDirectory}/.nix-profile/bin/jellyfinmediaplayer";
     launchOptions = "LD_PRELOAD= %command% --tv --fullscreen";
   };

@@ -9,12 +9,16 @@
   # ~/Games/Emulation/roms/gc
   # ~/Games/Emulation/roms/wii
 
-  myHome.gaming.emulation.syncPaths = let
-    parent = ".local/share/dolphin-emu";
-  in {
-    "${parent}/Wii/" = "saves/wii";
-    "${parent}/GC/" = "saves/gc";
+  myHome.gaming.emulation = {
+    syncPaths = let
+      parent = ".local/share/dolphin-emu";
+    in {
+      "${parent}/Wii/" = "saves/wii";
+      "${parent}/GC/" = "saves/gc";
 
-    "${parent}/GameSettings/" = "otherData/dolphin/gameSettings";
+      "${parent}/GameSettings/" = "otherData/dolphin/gameSettings";
+    };
+
+    manifests.dolphin.target = "${pkgs.dolphin-emu}/bin/dolphin-emu";
   };
 }
