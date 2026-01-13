@@ -167,9 +167,6 @@ InputTimeTracking() {
     Send("{Tab}")
 }
 
-#t::InputTimeTracking()
-
-
 ; Titlebar Setup
 ; --------------
 ; Abandoned due to not playing nice with komorebi
@@ -231,7 +228,7 @@ StartKomorebi()
 ; REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32
 ; See https://www.autohotkey.com/boards/viewtopic.php?p=389016&sid=9c2303e42961b09efbfad34ca1d62486#p389016
 
-#O::LockWindows()
+#Esc::LockWindows()
 #LButton::DragWindow("LButton")
 #RButton::ResizeWindow("RButton")
 
@@ -244,18 +241,30 @@ StartKomorebi()
 
 ; Workspace movement
 #1::Komorebic("focus-workspace 0")
+#Tab::Komorebic("focus-workspace 0")
 #2::Komorebic("focus-workspace 1")
+#q::Komorebic("focus-workspace 1")
 #3::Komorebic("focus-workspace 2")
+#w::Komorebic("focus-workspace 2")
 #4::Komorebic("focus-workspace 3")
+#e::Komorebic("focus-workspace 3")
 #5::Komorebic("focus-workspace 4")
+#r::Komorebic("focus-workspace 4")
 #6::Komorebic("focus-workspace 5")
+#t::Komorebic("focus-workspace 5")
 
 #+1::Komorebic("send-to-workspace 0")
+#+Tab::Komorebic("send-to-workspace 0")
 #+2::Komorebic("send-to-workspace 1")
+#+q::Komorebic("send-to-workspace 1")
 #+3::Komorebic("send-to-workspace 2")
+#+w::Komorebic("send-to-workspace 2")
 #+4::Komorebic("send-to-workspace 3")
+#+e::Komorebic("send-to-workspace 3")
 #+5::Komorebic("send-to-workspace 4")
+#+r::Komorebic("send-to-workspace 4")
 #+6::Komorebic("send-to-workspace 5")
+#+t::Komorebic("send-to-workspace 5")
 
 ; Window Movement
 #h::Komorebic("focus left")
@@ -270,9 +279,11 @@ StartKomorebi()
 #+Enter::Komorebic("promote")
 
 #=::Komorebic("resize-axis horizontal increase")
+#p::Komorebic("resize-axis horizontal increase")
 #-::Komorebic("resize-axis horizontal decrease")
-#+=::Komorebic("resize-axis vertical increase")
-#+-::Komorebic("resize-axis vertical decrease")
+#o::Komorebic("resize-axis horizontal decrease")
+#+p::Komorebic("resize-axis vertical increase")
+#+o::Komorebic("resize-axis vertical decrease")
 
 ; Monitor Movement
 #.::Komorebic("cycle-monitor next")
@@ -287,10 +298,10 @@ StartKomorebi()
 #]::Komorebic("cycle-layout previous")
 #m::Komorebic("toggle-monocle")
 #f::Komorebic("toggle-float")
-#\::Komorebic("toggle-window-based-work-area-offset")
+#'::Komorebic("toggle-window-based-work-area-offset")
 
 ; Program Launching
 ; -----------------
-#q::Komorebic("close") ; TODO: Should this be a regular AHK close?
+#x::Komorebic("close") ; TODO: Should this be a regular AHK close?
 #b::Run("C:\Program Files\Zen Browser\zen.exe")
 #Enter::Run("C:\Program Files\Alacritty\alacritty.exe")
