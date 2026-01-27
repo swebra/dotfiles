@@ -7,7 +7,6 @@
     gaming = {
       enable = true;
       mangohud.enable = false;
-      emulation.enable = false;
     };
     gui = {
       alacritty.enable = true;
