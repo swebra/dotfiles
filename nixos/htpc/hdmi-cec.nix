@@ -2,46 +2,61 @@
   lib,
   pkgs,
   ...
-}: let
-  # TODO: echo from coreutils specifically?
-  cec-client = cmd: "echo '${cmd}' | ${lib.getExe' pkgs.libcec "cec-client"} -s";
-in {
+}: {
+  # Systemd services for HDMI-CEC control of TV
+  # References:
   # https://github.com/Pulse-Eight/libcec/tree/master/systemd
   # https://github.com/josephbreiting/cec-systemd/
-  # https://github.com/NixOS/nixpkgs/blob/c736ff24eb207acb0d415be67edc7f9656ad2844/nixos/lib/systemd-unit-options.nix
+  # https://github.com/Lawstorant/cec-toolbox/tree/main/systemd
 
-  # Might be more that can be done https://wiki.archlinux.org/title/HDMI-CEC
+  # libcec is used directly for simplicity as cec-ctl requires the adapter's "line
+  # discipline" to be configured to create a /dev/cecX device
+  # https://wiki.archlinux.org/title/HDMI-CEC#PulseEight_USB_adapter
 
-  # systemctl cat <service-name> to see the full output service file
+  # Nix systemd options (script/preStop) give full shell support (piping, &&, etc)
 
-  # Use nix options instead of directly to get access to "full" shell with piping support
-  # Could also ExecStart=/bin/sh -c
-
-  systemd = {
-    timers.cec-boot = {
-      description = "Trigger cec-boot service on boot";
-      timerConfig = {
-        OnBootSec = 1;
-        OnStartupSec = 1;
-      };
+  systemd = let
+    cec-client = cmd: "echo '${cmd}' | ${lib.getExe' pkgs.libcec "cec-client"} --log-level 4 --single-command";
+    cec-on = cec-client "on 0" + " && sleep 4 && " + cec-client "as"; # Power and input
+    cec-off = cec-client "standby 0";
+  in {
+    # Boot timer is slightly faster than waiting for multi-user.target
+    timers.cec-on-boot = {
+      description = "Trigger cec-on-boot service on boot";
+      timerConfig.OnBootSec = 1;
       wantedBy = ["timers.target"];
     };
 
     services = {
-      cec-boot = {
-        description = "Turns on TV and sets the input";
+      cec-on-boot = {
+        description = "Turn On TV and Set HDMI Input";
         serviceConfig.Type = "oneshot";
-        preStart = cec-client "on 0"; # ExecStartPre
-        script = cec-client "as 0"; # ExecStart
+        script = cec-on;
       };
 
-      cec-poweroff = {
-        description = "Turns off TV on shutdown";
-        serviceConfig.Type = "oneshot";
-        # idk why both
-        script = cec-client "standby 0"; # ExecStart
-        preStop = cec-client "standby 0"; # ExecStop
-        wantedBy = ["poweroff.target"];
+      # Dependency on poweroff.target/shutdown.target didn't work reliably, so this is
+      # catching the stop of multi-user.target instead
+      cec-power = {
+        description = "Turn Off TV";
+        wantedBy = ["multi-user.target"];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = "yes"; # Stay "running/active" after (no-op) script completes
+        };
+        preStop = cec-off; # ExecStop
+      };
+
+      cec-sleep = {
+        description = "Turn Off TV on Sleep, Turn On TV on Wake";
+        wantedBy = ["sleep.target"];
+        before = ["sleep.target"]; # Run script before sleep
+        unitConfig.StopWhenUnneeded = "yes"; # Stop when sleep.target has ended, running preStop
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = "yes"; # Stay "running/active" after script completes
+        };
+        script = cec-off;
+        preStop = cec-on;
       };
     };
   };
