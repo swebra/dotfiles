@@ -8,17 +8,14 @@
             "Apps"
         ],
         "executableArgs": "",
-        "executableModifier": "\"${exePath}\"",
+        "executableModifier": "",
         "startInDirectory": "",
         "titleModifier": "${fuzzyTitle}",
-        "fetchControllerTemplatesButton": null,
-        "removeControllersButton": null,
         "steamInputEnabled": "1",
         "imageProviders": [
             "sgdb",
             "steamCDN"
         ],
-        "onlineImageQueries": "${${fuzzyTitle}}",
         "imagePool": "${fuzzyTitle}",
         "drmProtect": false,
         "userAccounts": {
@@ -35,9 +32,9 @@
             "manualManifests": "${romsdirglobal}/manifests"
         },
         "titleFromVariable": {
-            "limitToGroups": "",
             "caseInsensitiveVariables": false,
-            "skipFileIfVariableWasNotFound": false
+            "skipFileIfVariableWasNotFound": false,
+            "limitToGroups": []
         },
         "fuzzyMatch": {
             "replaceDiacritics": true,
@@ -88,7 +85,10 @@
             "icon": null
         },
         "parserId": "174589074634171753",
-        "version": 23
+        "version": 25,
+        "onlineImageQueries": [
+            "${fuzzyTitle}"
+        ]
     },
     {
         "parserType": "Glob",
@@ -106,7 +106,6 @@
         "imageProviders": [
             "sgdb"
         ],
-        "onlineImageQueries": "${${fuzzyTitle}}",
         "imagePool": "${fuzzyTitle}",
         "drmProtect": false,
         "userAccounts": {
@@ -123,9 +122,9 @@
             "glob": "${title}@(.ciso|.CISO|.dol|.DOL|.elf|.ELF|.gcz|.GCZ|.iso|.ISO|.rvz|.RVZ|.wad|.WAD|.wbfs|.WBFS|.wia|.WIA)"
         },
         "titleFromVariable": {
-            "limitToGroups": "",
             "caseInsensitiveVariables": false,
-            "skipFileIfVariableWasNotFound": false
+            "skipFileIfVariableWasNotFound": false,
+            "limitToGroups": []
         },
         "fuzzyMatch": {
             "replaceDiacritics": true,
@@ -176,25 +175,32 @@
             "icon": ""
         },
         "parserId": "174598577223653018",
-        "version": 23
+        "version": 25,
+        "onlineImageQueries": [
+            "${fuzzyTitle}"
+        ]
     },
     {
         "parserType": "Glob",
-        "configTitle": "Nintendo Switch - Eden",
+        "configTitle": "Nintendo GameCube - Dolphin",
         "steamDirectory": "${steamdirglobal}",
-        "romDirectory": "${romsdirglobal}/roms/switch",
+        "romDirectory": "${romsdirglobal}/roms/gc/",
         "steamCategories": [
-            "Switch"
+            "GameCube"
         ],
-        "executableArgs": "-f -g \"${filePath}\"",
+        "executableArgs": "-b -e \"${filePath}\"",
         "executableModifier": "\"${exePath}\"",
         "startInDirectory": "",
         "titleModifier": "${fuzzyTitle}",
+        "fetchControllerTemplatesButton": null,
+        "removeControllersButton": null,
         "steamInputEnabled": "1",
         "imageProviders": [
             "sgdb"
         ],
-        "onlineImageQueries": "${${fuzzyTitle}}",
+        "onlineImageQueries": [
+            "${fuzzyTitle}"
+        ],
         "imagePool": "${fuzzyTitle}",
         "drmProtect": false,
         "userAccounts": {
@@ -202,16 +208,16 @@
                 "Global"
             ]
         },
+        "parserInputs": {
+            "glob": "${title}@(.ciso|.CISO|.dol|.DOL|.elf|.ELF|.gcm|.GCM|.gcz|.GCZ|.iso|.ISO|.nkit.iso|.NKIT.ISO|.rvz|.RVZ|.wad|.WAD|.wia|.WIA)"
+        },
         "executable": {
-            "path": "/home/eric/.nix-profile/bin/eden",
+            "path": "/home/eric/.nix-profile/bin/dolphin-emu",
             "shortcutPassthrough": false,
             "appendArgsToExecutable": true
         },
-        "parserInputs": {
-            "glob": "${title}@(.kip|.KIP|.nca|.NCA|.nro|.NRO|.nso|.NSO|.nsp|.NSP|.xci|.XCI)"
-        },
         "titleFromVariable": {
-            "limitToGroups": "",
+            "limitToGroups": [],
             "caseInsensitiveVariables": false,
             "skipFileIfVariableWasNotFound": false
         },
@@ -246,6 +252,7 @@
                 ],
                 "sizes": [],
                 "sizesHero": [],
+                "sizesTall": null,
                 "sizesIcon": []
             }
         },
@@ -263,7 +270,7 @@
             "logo": "",
             "icon": ""
         },
-        "parserId": "174658240427946759",
-        "version": 23
+        "parserId": "176948067441589655",
+        "version": 25
     }
 ]

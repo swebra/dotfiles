@@ -9,7 +9,7 @@
 
   # Tie into steam rom manager
   myHome.gaming.emulation.manifests.jellyfin = {
-    target = "${config.home.homeDirectory}/.nix-profile/bin/jellyfinmediaplayer";
+    target = "${config.home.homeDirectory}/.nix-profile/bin/jellyfin-desktop";
     launchOptions = "LD_PRELOAD= %command% --tv --fullscreen";
   };
 }
