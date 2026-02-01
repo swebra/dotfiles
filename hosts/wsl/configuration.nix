@@ -1,6 +1,7 @@
 {
-  inputs,
   config,
+  inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -8,6 +9,7 @@
   ];
 
   myOS = {
+    system.enable = lib.mkForce false;
     dev.enable = true;
   };
 
