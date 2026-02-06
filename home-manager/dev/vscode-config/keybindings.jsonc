@@ -2,85 +2,31 @@
   // =========================================================================
   // Unbind Defaults
   // =========================================================================
-  { // Reused
-    "key": "ctrl+`",
-    "command": "-workbench.action.terminal.toggleTerminal"
+  { // Don't like
+    "key": "ctrl+\\",
+    "command": "-workbench.action.splitEditor"
   },
-  { // Rebound
-    "key": "ctrl+b",
-    "command": "-workbench.action.toggleSidebarVisibility"
-  },
-  {
-    "key": "ctrl+q",
-    "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
-    "when": "inQuickOpen && inViewsPicker"
-  },
-  { // Reused
-    "key": "ctrl+shift+`",
-    "command": "-workbench.action.terminal.new"
-  },
-  { // Rebound and reused
-    "key": "ctrl+shift+\\",
-    "command": "-editor.action.jumpToBracket",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+w",
-    "command": "-workbench.action.closeWindow"
-  },
-  { // Reused
-    "key": "ctrl+shift+j",
-    "command": "-workbench.action.search.toggleQueryDetails",
-    "when": "searchViewletVisible"
-  },
-  { // Reused
+  { // Don't like, accidental press when attempting panel navigation
     "key": "ctrl+shift+k",
     "command": "-editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly"
   },
-  { // Reused
+  { // Don't like
     "key": "ctrl+shift+n",
     "command": "-workbench.action.newWindow"
   },
-  { // Reused
+  { // Don't use
     "key": "ctrl+shift+m",
     "command": "-workbench.actions.view.problems"
   },
-  { // Rebound
-    "key": "ctrl+1",
-    "command": "-workbench.action.focusFirstEditorGroup"
+  { // Don't use
+    "key": "ctrl+shift+u",
+    "command": "-workbench.action.output.toggleOutput",
+    "when": "workbench.panel.output.active"
   },
-  { // Rebound
-    "key": "ctrl+2",
-    "command": "-workbench.action.focusSecondEditorGroup"
-  },
-  { // Rebound
-    "key": "ctrl+3",
-    "command": "-workbench.action.focusThirdEditorGroup"
-  },
-  { // Rebound
-    "key": "ctrl+4",
-    "command": "-workbench.action.focusFourthEditorGroup"
-  },
-  { // Rebound
-    "key": "ctrl+5",
-    "command": "-workbench.action.focusFifthEditorGroup"
-  },
-  { // Rebound
-    "key": "ctrl+6",
-    "command": "-workbench.action.focusSixthEditorGroup"
-  },
-  { // Rebound
-    "key": "ctrl+7",
-    "command": "-workbench.action.focusSeventhEditorGroup"
-  },
-  { // Rebound
-    "key": "ctrl+8",
-    "command": "-workbench.action.focusEighthEditorGroup"
-  },
-  { // Rebound
-    "key": "ctrl+9",
-    "command": "-workbench.action.lastEditorInGroup"
+  { // Don't like
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
   },
   // =========================================================================
   // Window Management
@@ -88,10 +34,6 @@
   {
     "key": "ctrl+t",
     "command": "workbench.action.files.newUntitledFile"
-  },
-  {
-    "key": "ctrl+shift+o",
-    "command": "workbench.action.files.openFolder"
   },
   // Font size
   {
@@ -102,24 +44,7 @@
     "key": "ctrl+-",
     "command": "editor.action.fontZoomOut"
   },
-  // Editor splitting
-  {
-    "key": "ctrl+k left",
-    "command": "workbench.action.splitEditor"
-  },
-  {
-    "key": "ctrl+k right",
-    "command": "workbench.action.splitEditor"
-  },
-  {
-    "key": "ctrl+k up",
-    "command": "workbench.action.splitEditorOrthogonal"
-  },
-  {
-    "key": "ctrl+k down",
-    "command": "workbench.action.splitEditorOrthogonal"
-  },
-  // Chrome-like tab switching
+  // Browser-like tab switching
   {
     "key": "ctrl+1",
     "command": "workbench.action.openEditorAtIndex1"
@@ -159,7 +84,6 @@
   // =========================================================================
   // Editor
   // =========================================================================
-  // Line editing
   {
     "key": "ctrl+down",
     "command": "editor.action.moveLinesDownAction",
@@ -190,41 +114,63 @@
     "command": "editor.action.jumpToBracket",
     "when": "editorTextFocus"
   },
+  // Ctrl+E chording for editor right-click actions
+  {
+    "key": "ctrl+e ctrl+r",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus"
+  },
+  {
+    "key": "ctrl+e ctrl+d",
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+
   // =========================================================================
   // Activity Bar/Sidebar
   // =========================================================================
   { // Toggle sidebar
-    "key": "ctrl+\\",
+    "key": "ctrl+'",
     "command": "workbench.action.toggleSidebarVisibility"
   },
   { // Toggle sidebar
-    "key": "ctrl+shift+\\",
+    "key": "ctrl+shift+'",
     "command": "workbench.action.toggleSidebarVisibility"
   },
-  { // Focus bars
-    "key": "alt+\\",
+  { // Focus sidebar
+    "key": "alt+'",
     "when": "sideBarVisible",
     "command": "workbench.action.focusSideBar"
   },
-  { // Show and focus bars if they aren't visible
-    "key": "alt+\\",
+  { // Open and focus sidebar (when not visible)
+    "key": "alt+'",
     "when": "!sideBarVisible",
-    "command": "macros.showAndFocusSidebar"
+    "command": "runCommands",
+    "args": {
+      "commands": [
+          "workbench.action.toggleSidebarVisibility",
+          "workbench.action.focusSideBar"
+        ]
+    }
   },
-  { // Unfocus bars
-    "key": "alt+\\",
+  { // Unfocus sidebar
+    "key": "alt+'",
     "when": "sideBarFocus",
     "command": "workbench.action.focusActiveEditorGroup"
   },
-  { // Move up sidebar view
-    "key": "ctrl+shift+j",
+  { // Move to left sidebar view
+    "key": "ctrl+shift+h",
     "when": "sideBarFocus",
     "command": "workbench.action.previousSideBarView"
   },
-  { // Move down sidebar view
-    "key": "ctrl+shift+k",
+  { // Move to right sidebar view
+    "key": "ctrl+shift+l",
     "when": "sideBarFocus",
     "command": "workbench.action.nextSideBarView"
+  },
+  { // Open testing in sidebar
+    "key": "ctrl+shift+t",
+    "command": "workbench.view.extension.test"
   },
   // File Explorer
   { // Enable filtering
@@ -250,67 +196,82 @@
   // =========================================================================
   // Panel
   // =========================================================================
-  { // Toggle view and focus of panel
-    "key": "ctrl+`",
+  { // Open panel, focus on terminal
+    "key": "ctrl+b",
+    "when": "!panelVisible",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  { // Toggle view and focus terminal
+    "key": "ctrl+b",
+    "when": "panelVisible",
     "command": "workbench.action.togglePanel"
   },
-  { // Toggle view and focus panel
-    "key": "ctrl+shift+`",
+  { // Focus panel
+    "key": "alt+b",
+    "when": "panelVisible",
+    "command": "workbench.action.focusPanel"
+  },
+  { // Open and focus panel (when not visible)
+    "key": "alt+b",
+    "when": "!panelVisible",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+          "workbench.action.togglePanel",
+          "workbench.action.focusPanel"
+        ]
+    }
+  },
+  { // Unfocus panel
+    "key": "alt+b",
+    "when": "panelFocus",
+    "command": "workbench.action.focusActiveEditorGroup"
+  },
+  // ==== Dup above with backtick ====
+  { // Open panel, focus on terminal
+    "key": "ctrl+`",
+    "when": "!panelVisible",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  { // Toggle view and focus terminal
+    "key": "ctrl+`",
+    "when": "panelVisible",
     "command": "workbench.action.togglePanel"
   },
   { // Focus panel
     "key": "alt+`",
-    // panelVisible doesn't exist
-    "when": "activePanel == 'workbench.panel.markers' || activePanel == 'workbench.panel.output' || activePanel == 'workbench.panel.repl' || activePanel == 'workbench.panel.terminal' || activePanel == 'workbench.panel.comments' || activePanel == 'workbench.panel.search'",
+    "when": "panelVisible",
     "command": "workbench.action.focusPanel"
   },
-  { // Show and focus panel if it isn't visible
+  { // Open and focus panel (when not visible)
     "key": "alt+`",
-    // !panelVisible doesn't exist
-    "when": "activePanel != 'workbench.panel.markers' && activePanel != 'workbench.panel.output' && activePanel != 'workbench.panel.repl' && activePanel != 'workbench.panel.terminal' && activePanel != 'workbench.panel.comments' && activePanel != 'workbench.panel.search'",
-    "command": "workbench.action.togglePanel"
+    "when": "!panelVisible",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+          "workbench.action.togglePanel",
+          "workbench.action.focusPanel"
+        ]
+    }
   },
   { // Unfocus panel
     "key": "alt+`",
     "when": "panelFocus",
     "command": "workbench.action.focusActiveEditorGroup"
   },
-  { // Move left panel view
-    "key": "ctrl+shift+j",
+  // ==== End dup ====
+  { // Move to left panel view
+    "key": "ctrl+shift+h",
     "when": "panelFocus",
     "command": "workbench.action.previousPanelView"
   },
-  { // Move right panel
-    "key": "ctrl+shift+k",
+  { // Move to right panel view
+    "key": "ctrl+shift+l",
     "when": "panelFocus",
     "command": "workbench.action.nextPanelView"
-  },
-  {
-    "key": "ctrl+d",
-    "command": "-editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus"
-  },
-  // WIP unsorted
-  {
-    "key": "ctrl+shift+c",
-    "command": "-workbench.action.terminal.openNativeConsole",
-    "when": "!terminalFocus"
-  },
-  {
-    "key": "ctrl+q",
-    "command": "-workbench.action.quickOpenView"
-  },
-  {
-    "key": "ctrl+shift+t",
-    "command": "-workbench.action.reopenClosedEditor"
-  },
-  {
-    "key": "ctrl+; ctrl+o",
-    "command": "-testing.showMostRecentOutput",
-    "when": "testing.hasAnyResults"
-  },
-  {
-    "key": "ctrl+shift+t",
-    "command": "workbench.view.extension.test"
-  },
+  }
+  // =========================================================================
+  // Unsorted
+  // =========================================================================
+  // Unsorted (auto/UI-generated) config appears here
 ]
