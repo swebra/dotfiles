@@ -5,8 +5,11 @@ in {
 
   services.immich = {
     enable = true;
-    host = "127.0.0.1"; # listen on IPv4
+    host = "127.0.0.1"; # listen on IPv4, only locally
     mediaLocation = immichDir;
+
+    # TODO: Setup hardware transcoding
+    # accelerationDevices = [ "/dev/dri/renderD128" ];
   };
 
   # immich user should get ownership of this by the immich tmpfiles settings
@@ -19,7 +22,8 @@ in {
   '';
 }
 # TODO:
-# - hardware transcoding
-# - backup and database dump settings
-# - email provider?
+# - Adjust backup and database dump settings
+#   - https://docs.immich.app/administration/backup-and-restore
+#   - https://docs.immich.app/guides/template-backup-script
+#   - https://wiki.nixos.org/wiki/Immich#Using_borg_for_backups
 
