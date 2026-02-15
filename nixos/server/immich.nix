@@ -8,9 +8,10 @@ in {
     host = "127.0.0.1"; # listen on IPv4, only locally
     mediaLocation = immichDir;
 
-    # TODO: Setup hardware transcoding
-    # accelerationDevices = [ "/dev/dri/renderD128" ];
+    accelerationDevices = ["/dev/dri/renderD128"];
   };
+  # Access for hardware acceleration
+  users.users.${config.services.immich.user}.extraGroups = ["video" "render"];
 
   # immich user should get ownership of this by the immich tmpfiles settings
   # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/web-apps/immich.nix#L415

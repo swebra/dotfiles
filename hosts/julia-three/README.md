@@ -2,7 +2,7 @@
 ## Remote deploy
 - Working:
     ```shell
-    nixos-rebuild --flake .#julia-three --target-host julia-three --build-host julia-three --use-remote-sudo switch
+    nixos-rebuild --flake .#julia-three --target-host julia-three --build-host julia-three --sudo --ask-sudo-password switch
     ```
 - "Equivalent" nh command (which isn't quite equivalent: [1](https://github.com/nix-community/nh/issues/308), [2](https://github.com/nix-community/nh/issues/428)):
     ```shell
