@@ -2,6 +2,15 @@
   // =========================================================================
   // Unbind Defaults
   // =========================================================================
+  { // Conflicts with CLI tools like micro...
+    "key": "ctrl+q",
+    "command": "-workbench.action.quickOpenView"
+  },
+  { // ... so rebind to only work outside the terminal
+    "key": "ctrl+q",
+    "command": "workbench.action.quickOpenView",
+    "when": "!terminalFocus"
+  },
   { // Don't like
     "key": "ctrl+\\",
     "command": "-workbench.action.splitEditor"
