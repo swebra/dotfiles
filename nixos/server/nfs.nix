@@ -22,6 +22,11 @@
               type = lib.types.str;
               description = "Local mount point path.";
             };
+            options = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              description = "List of mount options.";
+              default = [];
+            };
           };
         });
         description = ''
@@ -51,7 +56,7 @@
           device = "${config.myOS.server.nfs.address}:/volume1/${nfsVolume}";
           fsType = "nfs";
           # TODO: NFS version?
-          # TODO: any mount options?
+          options = ["defaults"] ++ mountAttrs.options;
         };
       })
       config.myOS.server.nfs.mount;
