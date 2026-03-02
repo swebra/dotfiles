@@ -21,10 +21,13 @@
         tag-subject = "%(if)%(subject)%(then)%(subject)%(else)%(color:red)-%(color:reset)%(end)";
         tag-format = "${colored-tag-name} ${tag-subject} ${tag-date}";
       in {
+        # Current state
         st = "status";
         l = "log --oneline --decorate --date=short --graph";
         tags = "for-each-ref --sort='-version:refname' --format='${tag-format}' refs/tags";
         rtags = "tags --count=5"; # Use for-each-ref above instead of tag because it has a --count arg
+
+        # Development
         d = "diff";
         ds = "diff --staged";
         a = "add";
@@ -32,6 +35,8 @@
         cmm = "commit -m";
         co = "checkout";
         cob = "checkout -b";
+
+        # Pushing
         p = "push";
         pu = "push -u origin HEAD";
         pf = "push --force-with-lease";
@@ -40,7 +45,7 @@
       diff.colorMoved = "default";
       merge.conflictStyle = "zdiff3";
       tag.sort = "-version:refname"; # Parse tags as (semantic) versions
-      push.followTags = true;
+      push.followTags = true; # Push annotated tags when pushing commits
     };
 
     ignores = [
