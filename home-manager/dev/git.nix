@@ -13,9 +13,18 @@
         email = private.personal.email;
       };
 
-      alias = {
+      alias = let
+        aligned-tag-name = "%(align:8)%(refname:short)%(end)";
+        # Annotated tags have objecttype "tag", while lightweight tags have "commit"
+        colored-tag-name = "%(if:equals=tag)%(objecttype)%(then)%(color:yellow)%(else)%(color:blue)%(end)${aligned-tag-name}%(color:reset)";
+        tag-date = "%(color:cyan)(%(creatordate:relative))%(color:reset)";
+        tag-subject = "%(if)%(subject)%(then)%(subject)%(else)%(color:red)-%(color:reset)%(end)";
+        tag-format = "${colored-tag-name} ${tag-subject} ${tag-date}";
+      in {
         st = "status";
         l = "log --oneline --decorate --date=short --graph";
+        tags = "for-each-ref --sort='-version:refname' --format='${tag-format}' refs/tags";
+        rtags = "tags --count=5"; # Use for-each-ref above instead of tag because it has a --count arg
         d = "diff";
         ds = "diff --staged";
         a = "add";
@@ -30,6 +39,7 @@
 
       diff.colorMoved = "default";
       merge.conflictStyle = "zdiff3";
+      tag.sort = "-version:refname"; # Parse tags as (semantic) versions
       push.followTags = true;
     };
 
