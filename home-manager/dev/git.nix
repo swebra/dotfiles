@@ -98,4 +98,6 @@
   home.packages = [
     pkgs.git-open
   ];
+
+  programs.bash.shellAliases.g = "git";
 }
