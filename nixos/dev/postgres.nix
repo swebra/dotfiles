@@ -7,5 +7,8 @@
     initialScript = pkgs.writeText "init-sql-script" ''
       alter user postgres with password 'postgres';
     '';
+
+    # Useful for debugging
+    # settings.log_statement = "all";
   };
 }
