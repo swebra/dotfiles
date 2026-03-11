@@ -1,4 +1,8 @@
-{...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
@@ -38,6 +42,12 @@
       dc = "docker compose";
       dcu = "dc build && dc up -w";
     };
+
+    # Maintain shell autocomplete for aliases
+    initExtra = ''
+      source ${lib.getExe pkgs.complete-alias}
+      complete -F _complete_alias "''${!BASH_ALIASES[@]}"
+    '';
 
     # Ignore duplicate commands and space-prefix commands in history
     historyControl = ["ignoreboth"];
