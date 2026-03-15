@@ -33,6 +33,7 @@
 
     services.caddy = {
       enable = true;
+      # MANUAL UPDATE: Plugins are manually updated
       package = pkgs.caddy.withPlugins {
         plugins = ["github.com/caddy-dns/cloudflare@v0.2.2"];
         hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
@@ -43,8 +44,8 @@
         acme_dns cloudflare {env.CF_API_TOKEN}
       '';
 
+      # MANUAL SETUP: Cloudflare API token is manually set (TODO: secret management)
       # Contains `CF_API_TOKEN=my_token`
-      # TODO: use secret management
       environmentFile = "/etc/caddy/caddy.env";
 
       virtualHosts =

@@ -24,7 +24,7 @@ in {
     groups.${config.services.immich.group}.gid = 65536;
   };
 
-  # MANUAL: Ownership and permissions of mount must be manually set
+  # MANUAL SETUP: Ownership and permissions of mount must be manually set
   # ```
   # sudo chown immich:immich /mnt/photos
   # sudo chmod 0700 /mnt/photos
