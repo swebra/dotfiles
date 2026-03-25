@@ -24,7 +24,7 @@
         # Current state
         st = "status";
         l = "log --oneline --decorate --date=short --graph";
-        rl = "log -10";
+        rl = "l -10";
         tags = "for-each-ref --sort='-version:refname' --format='${tag-format}' refs/tags";
         rtags = "tags --count=5"; # Use for-each-ref above instead of tag because it has a --count arg
 
