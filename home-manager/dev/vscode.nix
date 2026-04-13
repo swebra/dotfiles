@@ -62,7 +62,7 @@
       };
     })
 
-    # Always manage non-GUI config for when system is used for remote dev (like in WSL)
+    # Always manage non-GUI config for when system is used for remote dev
     {
       programs.git = {
         ignores = [".vscode"];
