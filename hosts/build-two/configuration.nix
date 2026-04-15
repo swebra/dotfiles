@@ -8,6 +8,7 @@
     gui.enable = true;
     gaming.enable = true;
     dev.docker.enable = true;
+    work.enable = true;
   };
 
   hardware.bluetooth.enable = true;
