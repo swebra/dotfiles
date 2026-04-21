@@ -7,7 +7,7 @@
     machine-name = "build-two";
     gui.enable = true;
     gaming.enable = true;
-    dev.docker.enable = true;
+    dev.enable = true;
     work.enable = true;
   };
 
