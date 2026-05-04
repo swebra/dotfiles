@@ -65,17 +65,14 @@
       };
 
       # TODO: Could use toPythonApplication? Maybe need scripts defined in pyproject.toml
-      runLocalHook = lib.getExe (
-        pkgs.writers.writePython3Bin "runLocalHook" {} ./git-hooks/run_local_hook.py
-      );
+      runLocalHook = pkgs.writers.writePython3 "runLocalHook" {} ./git-hooks/run_local_hook.py;
 
-      prepareCommitMsg = lib.getExe (
-        pkgs.writers.writePython3Bin "prepareCommitMsg" {
+      prepareCommitMsg =
+        pkgs.writers.writePython3 "prepareCommitMsg" {
           libraries = [runLocalHookLib];
           flakeIgnore = ["E501"];
         }
-        ./git-hooks/prepare_commit_msg.py
-      );
+        ./git-hooks/prepare_commit_msg.py;
     in {
       commit-msg = runLocalHook;
       pre-commit = runLocalHook;
