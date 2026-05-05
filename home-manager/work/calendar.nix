@@ -37,7 +37,8 @@
     timers.${serviceName} = {
       Unit.Description = "Check calendar for upcoming events";
       Timer = {
-        OnCalendar = "*:4/5"; # Every 5n-1 minutes (XX:04, XX:09, XX:14, XX:19, ...)
+        # Around work hours, every 5n-1 minutes (07:04, 07:09, ..., 17:54, 17:59)
+        OnCalendar = "Mon..Fri 07..17:4/5";
         AccuracySec = "15s"; # Within 15 seconds of above ^ (default is 1 min)
         Persistent = true; # Handle last "missed" event (for example when computer off)
       };
