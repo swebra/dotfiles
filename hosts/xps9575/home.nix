@@ -2,8 +2,8 @@
   myHome = {
     dev.enable = true;
     gui.enable = true;
-    gaming.enable = true;
-    htpc.enable = true;
+    work.enable = true;
+    work.calendar.enable = false; # TODO: haven't set up tokens
   };
 
   # Home-manager config
