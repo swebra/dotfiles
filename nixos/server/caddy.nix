@@ -35,8 +35,8 @@
       enable = true;
       # MANUAL UPDATE: Plugins are manually updated
       package = pkgs.caddy.withPlugins {
-        plugins = ["github.com/caddy-dns/cloudflare@v0.2.3"];
-        hash = "sha256-bL1cpMvDogD/pdVxGA8CAMEXazWpFDBiGBxG83SmXLA=";
+        plugins = ["github.com/caddy-dns/cloudflare@v0.2.4"];
+        hash = "sha256-vNSHU7txQLs0m0UChuszURXjEoMj4r1902+1ei0/DaI=";
       };
 
       email = private.personal.email;
