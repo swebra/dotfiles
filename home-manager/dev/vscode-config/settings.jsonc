@@ -2,6 +2,7 @@
   // General Settings
   // ===============
   // Visual
+  "window.controlsStyle": "hidden",
   "workbench.colorTheme": "One Dark Pro",
   // Smooth scrolling
   "workbench.list.smoothScrolling": true,
@@ -37,6 +38,7 @@
   // Panels Settings
   // ===============
   // Visual
+  "workbench.activityBar.location": "bottom",
   "terminal.integrated.fontSize": 15,
   "workbench.colorCustomizations": {
     "terminal.ansiBlack": "#282c34",
@@ -88,6 +90,7 @@
   "markdown.preview.scrollEditorWithPreview": false,
   "markdown.preview.doubleClickToSwitchToEditor": false,
   // Python
+  "python.terminal.activateEnvironment": false,
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
@@ -133,5 +136,9 @@
   },
   // WIP unsorted
   "window.menuBarVisibility": "toggle",
-  "workbench.activityBar.location": "bottom"
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": ["/run/current-system/sw/bin/bash", "bash"]
+    }
+  }
 }
