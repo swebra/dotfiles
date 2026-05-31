@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -12,8 +12,6 @@
   };
 
   hardware.bluetooth.enable = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_6_18; # TODO: Update in 26.05
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

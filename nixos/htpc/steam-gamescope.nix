@@ -16,7 +16,11 @@
 
   config = {
     programs = {
-      gamescope.capSysNice = true;
+      # https://github.com/nixos/nixpkgs/issues/523427
+      # https://github.com/NixOS/nixpkgs/pull/524488
+      # https://github.com/nixos/nixpkgs/issues/523200
+      # gamescope.capSysNice = true;
+
       steam = {
         gamescopeSession = {
           enable = true;

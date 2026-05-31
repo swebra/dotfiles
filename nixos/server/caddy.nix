@@ -29,10 +29,9 @@
   };
 
   config = {
-    networking.firewall.allowedTCPPorts = [80 443];
-
     services.caddy = {
       enable = true;
+      openFirewall = true;
       # MANUAL UPDATE: Plugins are manually updated
       package = pkgs.caddy.withPlugins {
         plugins = ["github.com/caddy-dns/cloudflare@v0.2.4"];
