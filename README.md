@@ -21,6 +21,12 @@ Sensitive configuration is stored in a private repo and referenced here through 
 ### Imports
 The top-level `default.nix` files in the `home-manager/` and `nixos/` dirs programmatically import all sibling/child files and generates their enable options using `recursiveOptionedImport`. See the function's definition in [`myLib/`](./myLib/default.nix) for more details, but also note that traditional, explicit imports of these files (`imports = [ ./path/to/file ]`) would still work.
 
+### Special comments
+```nix
+# MANUAL SETUP: Items that are not fully reproducible
+# MANUAL UPDATE: Items that are not updated through only flake inputs alone
+```
+
 ## Notes on configuration
 ### Global git hooks
 There are two ways to manage global git hooks:
