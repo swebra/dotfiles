@@ -21,29 +21,40 @@
       };
 
       manifests = lib.mkOption {
-        type = lib.types.attrsOf (lib.types.submodule {
-          options = {
-            target = lib.mkOption {
-              type = lib.types.str;
-              description = "Target executable or file path.";
-            };
-            startIn = lib.mkOption {
-              type = lib.types.str;
-              default = "";
-              description = "Working directory for the application.";
-            };
-            launchOptions = lib.mkOption {
-              type = lib.types.str;
-              default = "";
-              description = "Additional launch options or arguments.";
-            };
-            appendArgsToExecutable = lib.mkOption {
-              type = lib.types.bool;
-              default = false;
-              description = "Whether to append launchOptions to the executable path.";
+        type = let
+          manifestOptions = {name, ...}: {
+            options = {
+              target = lib.mkOption {
+                type = lib.types.str;
+                description = "Target executable or file path.";
+              };
+              title = lib.mkOption {
+                type = lib.types.str;
+                default = name;
+                description = ''
+                  The title as shown in Steam. If undefined, the name of the attribute set
+                  will be used."
+                '';
+              };
+              startIn = lib.mkOption {
+                type = lib.types.str;
+                default = "";
+                description = "Working directory for the application.";
+              };
+              launchOptions = lib.mkOption {
+                type = lib.types.str;
+                default = "";
+                description = "Additional launch options or arguments.";
+              };
+              appendArgsToExecutable = lib.mkOption {
+                type = lib.types.bool;
+                default = false;
+                description = "Whether to append launchOptions to the executable path.";
+              };
             };
           };
-        });
+        in
+          lib.types.attrsOf (lib.types.submodule manifestOptions);
         description = "Steam ROM Manager manifests for opening the emulators itself";
         default = {};
       };
@@ -70,7 +81,7 @@
           name: manifest:
             lib.nameValuePair "${basePath}/manifests/${name}.json" {
               text = builtins.toJSON {
-                title = name;
+                title = manifest.title;
                 target = manifest.target;
                 startIn = manifest.startIn;
                 launchOptions = manifest.launchOptions;
