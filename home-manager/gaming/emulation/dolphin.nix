@@ -19,6 +19,6 @@
       "${parent}/GameSettings/" = "otherData/dolphin/gameSettings";
     };
 
-    manifests.dolphin.target = "${pkgs.dolphin-emu}/bin/dolphin-emu";
+    manifests.dolphin.target = "dolphin-emu";
   };
 }
