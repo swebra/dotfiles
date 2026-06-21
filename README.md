@@ -25,6 +25,7 @@ The top-level `default.nix` files in the `home-manager/` and `nixos/` dirs progr
 ```nix
 # MANUAL SETUP: Items that are not fully reproducible
 # MANUAL UPDATE: Items that are not updated through only flake inputs alone
+# MAGIC VALUE: Items that are not derived programmatically and are subject to breaking
 ```
 
 ## Notes on configuration
