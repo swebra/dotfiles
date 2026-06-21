@@ -8,6 +8,7 @@
     extraOptions = [
       "--header"
       "--group-directories-first"
+      "--group" # For ls -l
     ];
   };
 
