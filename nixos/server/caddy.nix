@@ -5,17 +5,17 @@
   private,
   ...
 }: {
-  # https://wiki.nixos.org/wiki/Caddy
-  # https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148
-  # https://drafts.msfjarvis.dev/posts/creating-private-services-on-nixos-using-tailscale-and-caddy/
+  /*
+  https://wiki.nixos.org/wiki/Caddy
+  https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148
+  https://caddyserver.com/docs/caddyfile/options#trusted-proxies
 
-  # TODO:
-  # - cloudflare trusted proxy settings
-  #   - https://github.com/WeidiDeng/caddy-cloudflare-ip
-  #   - https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/#caddy
-  #   - https://www.cloudflare.com/en-ca/ips/
-  #   - https://caddyserver.com/docs/caddyfile/options#trusted-proxies
+  Future:
+  - https://github.com/mholt/caddy-dynamicdns
+  - https://drafts.msfjarvis.dev/posts/creating-private-services-on-nixos-using-tailscale-and-caddy/
 
+  Other TODO: fail2ban, crowdsec, geolocation filtering, etc.
+  */
   options = {
     myOS.server.caddy.subdomain = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
@@ -34,13 +34,32 @@
       openFirewall = true;
       # MANUAL UPDATE: Plugins are manually updated
       package = pkgs.caddy.withPlugins {
-        plugins = ["github.com/caddy-dns/cloudflare@v0.2.4"];
-        hash = "sha256-8yZDrejNKsaUnUaTUFYbarWNmxafqp2z2rWo+XRsxV8=";
+        plugins = [
+          # Handles SSL, DNS challenges
+          "github.com/caddy-dns/cloudflare@v0.2.4"
+          # Fetches up to date list of Cloudflare IPs
+          # Version has to be manually fetched: https://wiki.nixos.org/wiki/Caddy#Plug-ins
+          "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
+        ];
+        hash = "sha256-YkYxSjjEx+/vGN/cVqZvmTYKvxa44x75v/r38OqxqaY=";
       };
 
       email = private.personal.email;
       globalConfig = ''
         acme_dns cloudflare {env.CF_API_TOKEN}
+
+        servers {
+          trusted_proxies cloudflare {
+            interval 12h  # www.cloudflare.com/ips/ fetching interval
+            timeout 30s
+          }
+          # Determine "real" client IP first by looking for Cloudflare's custom header,
+          # followed by looking at the right-most X-Forwarded-For IP. This ordering was
+          # proven by experimentation, the docs for trusted_proxies_strict don't make it
+          # clear if client_ip_headers also have to be reversed (they don't).
+          client_ip_headers Cf-Connecting-Ip X-Forwarded-For
+          trusted_proxies_strict # Right-to-left prioritization if multiple IPs
+        }
       '';
 
       # MANUAL SETUP: Cloudflare API token is manually set (TODO: secret management)
