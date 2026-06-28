@@ -3,18 +3,22 @@
   pkgs,
   ...
 }: {
-  # Systemd services for HDMI-CEC control of TV
-  # References:
-  # https://github.com/Pulse-Eight/libcec/tree/master/systemd
-  # https://github.com/josephbreiting/cec-systemd/
-  # https://github.com/Lawstorant/cec-toolbox/tree/main/systemd
+  /*
+  References:
+  - https://github.com/Pulse-Eight/libcec/tree/master/systemd
+  - https://github.com/josephbreiting/cec-systemd/
+  - https://github.com/Lawstorant/cec-toolbox/tree/main/systemd
 
-  # libcec is used directly for simplicity as cec-ctl requires the adapter's "line
-  # discipline" to be configured to create a /dev/cecX device
-  # https://wiki.archlinux.org/title/HDMI-CEC#PulseEight_USB_adapter
+  libcec is used directly for simplicity as cec-ctl requires the adapter's "line
+  discipline" to be configured to create a /dev/cecX device
+  https://wiki.archlinux.org/title/HDMI-CEC#PulseEight_USB_adapter
 
-  # Nix systemd options (script/preStop) give full shell support (piping, &&, etc)
+  Nix systemd options (script/preStop) give full shell support (piping, &&, etc)
 
+  Operations could be sped up by ~.7s with a daemon service which stays connected to the
+  CEC network and reads from a named pipe (mkfifo), but the TV power-on time is by far
+  the limiting factor.
+  */
   systemd = let
     cec-client = cmd: "echo '${cmd}' | ${lib.getExe' pkgs.libcec "cec-client"} --log-level 4 --single-command";
     cec-on = cec-client "on 0" + " && sleep 4 && " + cec-client "as"; # Power and input
