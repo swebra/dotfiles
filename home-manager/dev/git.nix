@@ -13,19 +13,20 @@
         email = private.personal.email;
       };
 
-      alias = let
-        aligned-tag-name = "%(align:8)%(refname:short)%(end)";
-        # Annotated tags have objecttype "tag", while lightweight tags have "commit"
-        colored-tag-name = "%(if:equals=tag)%(objecttype)%(then)%(color:yellow)%(else)%(color:blue)%(end)${aligned-tag-name}%(color:reset)";
-        tag-date = "%(color:cyan)(%(creatordate:relative))%(color:reset)";
-        tag-subject = "%(if)%(subject)%(then)%(subject)%(else)%(color:red)-%(color:reset)%(end)";
-        tag-format = "${colored-tag-name} ${tag-subject} ${tag-date}";
-      in {
+      alias = {
         # Current state
+        s = "status";
         st = "status";
         l = "log --oneline --decorate --date=short --graph";
         rl = "l -10";
-        tags = "for-each-ref --sort='-version:refname' --format='${tag-format}' refs/tags";
+        tags = let
+          aligned-tag-name = "%(align:8)%(refname:short)%(end)";
+          # Annotated tags have objecttype "tag", while lightweight tags have "commit"
+          colored-tag-name = "%(if:equals=tag)%(objecttype)%(then)%(color:yellow)%(else)%(color:blue)%(end)${aligned-tag-name}%(color:reset)";
+          tag-date = "%(color:cyan)(%(creatordate:relative))%(color:reset)";
+          tag-subject = "%(if)%(subject)%(then)%(subject)%(else)%(color:red)-%(color:reset)%(end)";
+          tag-format = "${colored-tag-name} ${tag-subject} ${tag-date}";
+        in "for-each-ref --sort='-version:refname' --format='${tag-format}' refs/tags";
         rtags = "tags --count=5"; # Use for-each-ref above instead of tag because it has a --count arg
 
         # Development
@@ -37,10 +38,26 @@
         co = "checkout";
         cob = "checkout -b";
 
-        # Pushing
+        # Pull/Push
+        pl = "pull";
+        plr = "pull --rebase";
         p = "push";
         pu = "push -u origin HEAD";
         pf = "push --force-with-lease";
+
+        # Branches
+        b = "branch";
+        branch-clean = let
+          grep = lib.getExe' pkgs.gnugrep "egrep";
+          main-branches = "(master|main|dev)";
+          # Exits if not currently on a main branch (needed for deleted-merged)
+          on-main = "git branch --show-current | ${grep} '^${main-branches}$' > /dev/null || (echo 'Not on a main branch' && exit 1)";
+          # Prunes remote-tracking branches that no longer exist on the remote
+          prune-remotes = "git remote prune origin";
+          # Deletes branches merged into the current branch, ignoring current (* <current branch>) and main branches
+          deleted-merged = "git branch --merged | ${grep} -v '^\\*|(^\\s*${main-branches}$)' | xargs --no-run-if-empty git branch -d";
+        in "!( ${on-main}) && ( ${prune-remotes} ) && ( ${deleted-merged} )";
+        #   ^ exclamation mark for alias to be a subshell, it's not a negation operator
       };
 
       diff.colorMoved = "default";
