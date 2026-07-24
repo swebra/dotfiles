@@ -30,27 +30,23 @@
         enable = true;
         package = pkgs-unstable.vscode;
         # Note: extension changes sometimes requires vscode restart
-        profiles.default.extensions =
-          (with pkgs.vscode-marketplace; [
-            zhuangtongfa.material-theme
+        profiles.default.extensions = with pkgs.vscode-marketplace-release; [
+          zhuangtongfa.material-theme
 
-            ms-vscode-remote.remote-ssh
+          ms-vscode-remote.remote-ssh
 
-            medo64.render-crlf
-            streetsidesoftware.code-spell-checker
+          stkb.rewrap
+          medo64.render-crlf
+          streetsidesoftware.code-spell-checker
 
-            tamasfe.even-better-toml
-            redhat.vscode-yaml
-            jnoortheen.nix-ide
-            ms-python.vscode-pylance
-            ms-python.debugpy
-            charliermarsh.ruff
-          ])
-          ++ (with pkgs.vscode-marketplace-release; [
-            stkb.rewrap
-            github.copilot
-            github.copilot-chat
-          ]);
+          tamasfe.even-better-toml
+          redhat.vscode-yaml
+          jnoortheen.nix-ide
+          ms-python.python # An extension pack, but components not installed automatically
+          ms-python.vscode-pylance
+          ms-python.debugpy
+          charliermarsh.ruff
+        ];
       };
 
       xdg.configFile = let
