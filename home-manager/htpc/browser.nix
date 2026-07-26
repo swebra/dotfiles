@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # Not using zen as it always inherits the previous window size and does not support
   # --width/--height options. No fullscreen from the CLI either.
 
@@ -47,7 +51,7 @@
   };
 
   myHome.gaming.emulation.manifests.firefox = {
-    target = "firefox";
+    target = pkgs.firefox;
     launchOptions = "--width 1920 --height 1080";
   };
 }
