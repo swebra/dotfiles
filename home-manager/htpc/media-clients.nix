@@ -13,7 +13,7 @@
 
     youtube = {
       target = pkgs.vacuum-tube;
-      launchOptions = "--fullscreen";
+      launchOptions = "LD_PRELOAD= %command% --fullscreen";
     };
   };
 }
