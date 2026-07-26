@@ -10,6 +10,7 @@ in {
     envFile = "/etc/silverbullet/silverbullet.env";
   };
 
+  # MANUAL SETUP: Ownership of mount must be manually set. Currently squashing to admin.
   myOS.server.nfs.mount."notes" = {
     to = sbDir;
     existsFor = {
