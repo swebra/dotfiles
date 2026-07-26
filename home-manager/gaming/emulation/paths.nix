@@ -24,16 +24,20 @@
         type = let
           manifestOptions = {name, ...}: {
             options = {
-              target = lib.mkOption {
-                type = lib.types.str;
-                description = "Target executable or file path.";
-              };
               title = lib.mkOption {
                 type = lib.types.str;
                 default = name;
                 description = ''
                   The title as shown in Steam. If undefined, the name of the attribute set
                   will be used."
+                '';
+              };
+              target = lib.mkOption {
+                type = lib.types.package;
+                description = ''
+                  Target package to run. Specifically, the manifest will be setup to
+                  call the package's main binary from $PATH, intentionally omitting any
+                  nix store paths that may change during a rebuild.
                 '';
               };
               startIn = lib.mkOption {
@@ -82,7 +86,7 @@
             lib.nameValuePair "${basePath}/manifests/${name}.json" {
               text = builtins.toJSON {
                 title = manifest.title;
-                target = manifest.target;
+                target = manifest.target.meta.mainProgram;
                 startIn = manifest.startIn;
                 launchOptions = manifest.launchOptions;
                 appendArgsToExecutable = manifest.appendArgsToExecutable;
