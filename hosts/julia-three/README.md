@@ -1,19 +1,14 @@
-# System-specific notes:
-## Remote deploy
-- Working:
-    ```shell
-    nixos-rebuild --flake .#julia-three --target-host julia-three --build-host julia-three --sudo --ask-sudo-password switch
-    ```
-- "Equivalent" nh command (which isn't quite equivalent: [1](https://github.com/nix-community/nh/issues/308), [2](https://github.com/nix-community/nh/issues/428)):
-    ```shell
-    nh os switch --target-host julia-three --build-host julia-three
-    ```
-- Building locally runs into permission issues because of "trusted users"
+# Remote deploy
+```shell
+nh os switch --target-host julia-three --build-host julia-three
+```
 
-## Components not handled in Nix (manually setup and not reproducible)
-- SSH keys
-- Caddy env file w/ cloudflare tokens
+Rough nixos-rebuild equivalent:
+```shell
+nixos-rebuild --flake .#julia-three --target-host julia-three --build-host julia-three --sudo --ask-sudo-password switch
+```
 
+Building locally runs into permission issues because of "trusted users"
 
 # Notes:
 - Disabled certbot on old server with
