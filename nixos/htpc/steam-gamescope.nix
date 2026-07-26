@@ -15,15 +15,24 @@
   };
 
   config = {
-    programs = {
-      # Disabled, currently breaking steam in gamescope. See
-      # - https://github.com/NixOS/nixpkgs/pull/524488
-      # - https://github.com/NixOS/nixpkgs/issues/523427
-      # for the original, not-in-gamescope issue. Also possibly related:
-      # - https://github.com/NixOS/nixpkgs/issues/533140
-      # - https://github.com/nixos/nixpkgs/issues/523200
-      # gamescope.capSysNice = true;
+    # Overlay to fix bwrap issue with capSysNice in gamescope. See
+    # https://github.com/NixOS/nixpkgs/pull/524488#issuecomment-4558298012, and also
+    # https://github.com/NixOS/nixpkgs/issues/523427 for the original issue.
+    nixpkgs.overlays = [
+      (final: prev: {
+        gamescope = prev.gamescope.overrideAttrs (oa: {
+          postPatch =
+            (oa.postPatch or "")
+            + ''
+              substituteInPlace src/Utils/Process.cpp \
+                --replace-fail 'RestoreFdLimit();' 'prctl(PR_CAP_AMBIENT, PR_CAP_AMBIENT_LOWER, 23, 0, 0); RestoreFdLimit();'
+            '';
+        });
+      })
+    ];
 
+    programs = {
+      gamescope.capSysNice = true;
       steam = {
         gamescopeSession = {
           enable = true;
