@@ -6,7 +6,7 @@
     };
     gaming = {
       enable = true;
-      mangohud.enable = false;
+      mangohud.enable = false; # Handled in steam-gamescope
     };
     gui = {
       alacritty.enable = true;

@@ -27,6 +27,8 @@
       steam = {
         gamescopeSession = {
           enable = true;
+          args = ["--mangoapp"]; # Gamescope performance overlay
+
           steamArgs = [
             "-tenfoot" # Big Picture mode
             "-pipewire-dmabuf" # Default option
@@ -60,5 +62,8 @@
         user = config.myOS.user;
       };
     };
+
+    # For performance overlay
+    environment.systemPackages = [pkgs.mangohud];
   };
 }
