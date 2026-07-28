@@ -1,8 +1,13 @@
-{config, ...}: let
+{
+  config,
+  pkgs-unstable,
+  ...
+}: let
   sbDir = "/mnt/notes";
 in {
   services.silverbullet = {
     enable = true;
+    package = pkgs-unstable.silverbullet;
     listenPort = 8097;
     spaceDir = sbDir;
     # MANUAL SETUP: User auth is manually set (TODO: secret management)
