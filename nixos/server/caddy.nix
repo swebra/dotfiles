@@ -41,7 +41,7 @@
           # Version has to be manually fetched: https://wiki.nixos.org/wiki/Caddy#Plug-ins
           "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
         ];
-        hash = "sha256-YkYxSjjEx+/vGN/cVqZvmTYKvxa44x75v/r38OqxqaY=";
+        hash = "sha256-WWMdpXe+uCE1Lh7Q+jDvCUi++B+Gimy3YR5x+aRG+Yc=";
       };
 
       email = private.personal.email;
