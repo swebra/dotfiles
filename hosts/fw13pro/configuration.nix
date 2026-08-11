@@ -1,6 +1,7 @@
-{...}: {
+{inputs, ...}: {
   imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series3
   ];
 
   myOS = {
