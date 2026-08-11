@@ -1,0 +1,18 @@
+{...}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  myOS = {
+    machine-name = "fw13pro";
+    gui.enable = true;
+    dev.enable = true;
+    work.enable = true;
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Do not update for new release cycle, see NixOS docs
+  system.stateVersion = "26.05"; # Did you read the comment?
+}

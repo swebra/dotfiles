@@ -1,0 +1,15 @@
+{config, ...}: {
+  myHome = {
+    dev.enable = true;
+    gui.enable = true;
+    work.enable = true;
+    work.calendar.enable = false; # TODO: haven't set up tokens
+  };
+
+  # Home-manager config
+  home.username = "eric";
+  home.homeDirectory = "/home/${config.home.username}";
+
+  # Do not update for new release cycle, see home manager docs
+  home.stateVersion = "26.05"; # Did you read the comment?
+}
