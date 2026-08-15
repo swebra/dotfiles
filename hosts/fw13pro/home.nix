@@ -1,7 +1,11 @@
 {config, ...}: {
   myHome = {
-    dev.enable = true;
     gui.enable = true;
+    dev.enable = true;
+    gaming = {
+      enable = true;
+      emulation.enable = false;
+    };
     work.enable = true;
     work.calendar.enable = false; # TODO: haven't set up tokens
   };

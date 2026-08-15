@@ -8,6 +8,7 @@
     machine-name = "fw13pro";
     gui.enable = true;
     dev.enable = true;
+    gaming.enable = true;
     work.enable = true;
   };
 
