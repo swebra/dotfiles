@@ -39,7 +39,6 @@
         fw13pro = makeSystem "x86_64-linux" ./hosts/fw13pro/configuration.nix;
         julia-three = makeSystem "x86_64-linux" ./hosts/julia-three/configuration.nix;
         the-cube = makeSystem "x86_64-linux" ./hosts/the-cube/configuration.nix;
-        xps9575 = makeSystem "x86_64-linux" ./hosts/xps9575/configuration.nix;
       };
 
       homeConfigurations = {
@@ -48,7 +47,6 @@
         "eric@fw13pro" = makeHome "x86_64-linux" ./hosts/fw13pro/home.nix;
         "julia@julia-three" = makeHome "x86_64-linux" ./hosts/julia-three/home.nix;
         "eric@the-cube" = makeHome "x86_64-linux" ./hosts/the-cube/home.nix;
-        "eric@xps9575" = makeHome "x86_64-linux" ./hosts/xps9575/home.nix;
         "deck@steamdeck" = makeHome "x86_64-linux" ./hosts/steamdeck/home.nix;
       };
     };
