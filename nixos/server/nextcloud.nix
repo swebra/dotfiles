@@ -40,6 +40,10 @@ in {
 
     # Apps are managed in web interface for easier update management
     extraAppsEnable = false;
+    autoUpdateApps = {
+      enable = true;
+      startAt = "03:00:00";
+    };
 
     settings = {
       trusted_proxies = ["127.0.0.1"];
@@ -68,7 +72,13 @@ in {
     to = nextcloudDir;
     existsFor = {
       # MAGIC VALUE: names of services
-      services = ["nextcloud-setup" "nextcloud-cron" "nextcloud-update-db" "phpfpm-nextcloud"];
+      services = [
+        "nextcloud-setup"
+        "nextcloud-cron"
+        "nextcloud-update-db"
+        "phpfpm-nextcloud"
+        "nextcloud-update-plugins"
+      ];
       user = nextcloudUser;
     };
   };
