@@ -19,7 +19,7 @@ in {
   services.nextcloud = {
     enable = true;
     # MANUAL UPDATE: Needs to be manually incremented every major version
-    package = pkgs.nextcloud33;
+    package = pkgs.nextcloud34;
     home = nextcloudDir;
 
     # Initialization
