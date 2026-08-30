@@ -4,6 +4,7 @@
   // Visual
   "window.controlsStyle": "hidden",
   "workbench.colorTheme": "One Dark Pro",
+  "workbench.experimental.modernUI": false,
   // Smooth scrolling
   "workbench.list.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": "on",
@@ -140,5 +141,5 @@
     "bash": {
       "path": ["/run/current-system/sw/bin/bash", "bash"]
     }
-  }
+  },
 }
