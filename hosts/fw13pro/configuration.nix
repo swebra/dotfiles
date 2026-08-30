@@ -12,7 +12,7 @@
     work.enable = true;
   };
 
-  # Enable CUPS to print documents.
+  hardware.bluetooth.enable = true;
   services.printing.enable = true;
 
   # Do not update for new release cycle, see NixOS docs
