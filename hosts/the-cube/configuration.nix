@@ -5,7 +5,10 @@
 
   myOS = {
     machine-name = "the-cube";
-    gui.enable = true;
+    gui = {
+      enable = true;
+      wm.enable = false;
+    };
     gaming.enable = true;
     htpc.enable = true;
   };

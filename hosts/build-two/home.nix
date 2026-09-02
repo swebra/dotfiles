@@ -1,8 +1,9 @@
 {config, ...}: {
   myHome = {
+    wm.enable = true;
+    gui.enable = true;
     dev.enable = true;
     gaming.enable = true;
-    gui.enable = true;
 
     work.enable = true;
   };

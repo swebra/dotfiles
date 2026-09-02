@@ -1,5 +1,6 @@
 {config, ...}: {
   myHome = {
+    wm.enable = true;
     gui.enable = true;
     dev.enable = true;
     gaming = {
