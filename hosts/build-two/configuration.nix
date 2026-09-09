@@ -9,6 +9,8 @@
     gaming.enable = true;
     dev.enable = true;
     work.enable = true;
+
+    hardware.litra.enable = true;
   };
 
   hardware.bluetooth.enable = true;
