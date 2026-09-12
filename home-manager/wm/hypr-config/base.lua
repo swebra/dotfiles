@@ -35,7 +35,7 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local menu = "hyprlauncher"
+-- local menu = "hyprlauncher"
 
 
 -------------------
@@ -52,10 +52,6 @@ local menu = "hyprlauncher"
 --   hl.exec_cmd("nm-applet")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
 -- end)
-hl.on("hyprland.start", function()
-    hl.exec_cmd("noctalia")
-end)
-
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -94,7 +90,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.config({
     general = {
         gaps_in          = 5,
-        gaps_out         = 20,
+        gaps_out         = 10,
 
         border_size      = 2,
 
@@ -214,8 +210,8 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+        -- force_default_wallpaper = -1,   -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
 
@@ -269,16 +265,16 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- hl.bind(mainMod .. " + M",
 --     hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 -- hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+-- hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+-- hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+-- hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
+-- hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+-- hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
+-- hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
@@ -301,10 +297,10 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 -- hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
 -- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+-- hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+-- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+-- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 
 --------------------------------
@@ -348,7 +344,7 @@ hl.window_rule({
 -- })
 -- overlayLayerRule:set_enabled(false)
 
--- Hyprland-run windowrule
+-- Hyprland-run (emergency runner) windowrule
 hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
@@ -356,9 +352,3 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
-
-
--- new
--- local ipc = "noctalia msg "
--- hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"), { release = true })
--- hl.bind(mainMod, hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"), { release = true })

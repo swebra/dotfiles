@@ -27,31 +27,31 @@ for key, direction in pairs(window_keys) do
     hl.bind(mod .. key, hl.dsp.focus({ direction = direction }))
     hl.bind(modShift .. key, hl.dsp.window.move({ direction = direction }))
 end
+hl.bind(mod .. "F", hl.dsp.window.float())
 
 -- Programs
+hl.bind(mod .. "SUPER_L", noctalia("panel-toggle launcher"), { release = true })
 hl.bind(mod .. "x", hl.dsp.window.close())
 hl.bind(mod .. "return", hl.dsp.exec_cmd("alacritty"))
 
+-- Other panels
+hl.bind("ALT + Tab", noctalia("window-switcher"))
+hl.bind("Print", noctalia("screenshot-region"))
+hl.bind(mod .. "V", noctalia("panel-toggle clipboard"))
 
--- Noctalia function keys
-function_options = { locked = true, repeating = true }
-hl.bind("XF86AudioRaiseVolume", noctalia("volume-up"), function_options)
-hl.bind("XF86AudioLowerVolume", noctalia("volume-down"), function_options)
+-- Function/power keys
+locked = { locked = true }
+locked_repeating = { locked = true, repeating = true }
+hl.bind("XF86AudioRaiseVolume", noctalia("volume-up"), locked_repeating)
+hl.bind("XF86AudioLowerVolume", noctalia("volume-down"), locked_repeating)
 hl.bind("XF86AudioMute", noctalia("volume-mute"), { locked = true })
 
-hl.bind("XF86MonBrightnessUp", noctalia("brightness-up"), function_options)
-hl.bind("XF86MonBrightnessDown", noctalia("brightness-down"), function_options)
+hl.bind("XF86AudioPrev", noctalia("media previous"))
+hl.bind("XF86AudioPlay", noctalia("media toggle"))
+hl.bind("XF86AudioNext", noctalia("media next"))
 
+hl.bind("XF86MonBrightnessUp", noctalia("brightness-up"), locked_repeating)
+hl.bind("XF86MonBrightnessDown", noctalia("brightness-down"), locked_repeating)
 
--- TODO: Not sure if this is right?
-hl.bind("SUPER + SUPER_L", noctalia("panel-toggle launcher"), { release = true })
--- hl.bind("SUPER + SUPER_L", noctalia("panel-toggle control-center"), { release = true })
-hl.bind("ALT + Tab", noctalia("window-switcher"))
-
-
--- IDK what this does
-hl.window_rule({
-    match = { class = "dev.noctalia.Noctalia" },
-    float = true,
-    size = { 1080, 920 },
-})
+hl.bind("XF86PowerOff", noctalia("panel-toggle session")) -- power button
+hl.bind(mod .. "escape", noctalia("session lock"))
