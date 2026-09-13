@@ -69,17 +69,29 @@ in {
     litra
     litra-autotoggle
   ];
+  systemd.services = {
+    litra-autotoggle = {
+      description = "Turns on front Logitech Litra when webcam turns on";
+      wantedBy = ["multi-user.target"];
 
-  systemd.services.litra-autotoggle = {
-    description = "Turns on front Logitech Litra when webcam turns on";
-    wantedBy = ["multi-user.target"];
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = "5";
+        ExecStart = "${lib.getExe litra-autotoggle} --delay 1000 -s ${frontSerial}";
+      };
+    };
 
-    serviceConfig = {
-      Restart = "on-failure";
-      RestartSec = "5";
-      ExecStart = "${lib.getExe litra-autotoggle} --delay 1000 -s ${frontSerial}";
+    litra-sleep = {
+      description = "Turn off bias litra on sleep, turn on on wake";
+      wantedBy = ["sleep.target"];
+      before = ["sleep.target"]; # Run script before sleep
+      unitConfig.StopWhenUnneeded = "yes"; # Stop when sleep.target has ended, running preStop
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = "yes"; # Stay "running/active" after script completes
+      };
+      script = "${lib.getExe litra} off --serial-number ${biasSerial}";
+      preStop = "${lib.getExe litra} on --serial-number ${biasSerial}";
     };
   };
-
-  # TODO: Service for bias light to follow sleep
 }
