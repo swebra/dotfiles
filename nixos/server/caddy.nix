@@ -15,6 +15,10 @@
   - https://drafts.msfjarvis.dev/posts/creating-private-services-on-nixos-using-tailscale-and-caddy/
 
   Other TODO: fail2ban, crowdsec, geolocation filtering, etc.
+  Geofiltering has been setup in Cloudflare, but it only affects proxied subdomains
+
+  https://caddy.community/t/limiting-specific-subdomains-to-internal-ip-ranges/22287/2
+  - https://github.com/tuzzmaniandevil/caddy-dynamic-clientip
   */
   options = {
     myOS.server.caddy.subdomain = lib.mkOption {
