@@ -48,7 +48,8 @@ def build_notify_cmd(title, body, actions=None, error=False, mute=False):
     style = f"-i {icon} {f'-h string:sound-name:{sound}' if not mute else ''}"
     action_str = " ".join(f"-A '{action}={name}'" for name, action in actions.items())
     title = title.replace('"', '\\"')
-    body = body.replace('"', '\\"')
+    if body:
+        body = body.replace('"', '\\"')
 
     # Note: While timeout does affect display duration, notify-send also exits at the
     # end of the duration without a STDOUT output. No timeout is thus used to maintain
