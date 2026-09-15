@@ -1,4 +1,4 @@
-{config, ...}: let
+{config, pkgs-unstable, ...}: let
   immichDir = "/mnt/photos";
 in {
   # systemctl status immich-server
@@ -6,6 +6,7 @@ in {
 
   services.immich = {
     enable = true;
+    package = pkgs-unstable.immich;  # TODO: revert in 26.11
     host = "127.0.0.1"; # listen on IPv4, only locally
     mediaLocation = immichDir;
 
