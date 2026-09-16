@@ -21,10 +21,9 @@
       ./calendar-remind.py;
   in {
     services.${serviceName} = {
-      Unit = {
-        Description = "Show notifications for upcoming calendar events";
-        After = ["network-online.target"];
-      };
+      # Can't target network-online from a user service
+      # https://unix.stackexchange.com/a/669271
+      Unit.Description = "Show notifications for upcoming calendar events";
       Install.WantedBy = ["graphical-session.target"];
       Service = {
         Type = "oneshot";
@@ -38,7 +37,8 @@
       Unit.Description = "Check calendar for upcoming events";
       Timer = {
         # Around work hours, every 5n-1 minutes (07:04, 07:09, ..., 17:54, 17:59)
-        OnCalendar = "Mon..Fri 07..17:4/5";
+        # OnCalendar = "Mon..Fri 07..17:4/5";
+        OnCalendar = "Mon..Fri 07..22:4/5";
         AccuracySec = "15s"; # Within 15 seconds of above ^ (default is 1 min)
         Persistent = true; # Handle last "missed" event (for example when computer off)
       };

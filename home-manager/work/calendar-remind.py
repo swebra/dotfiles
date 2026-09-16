@@ -1,9 +1,9 @@
-from csv import DictReader
-from urllib.parse import urlsplit, parse_qs
-
 import re
+import socket
 import subprocess as sp
 import sys
+from csv import DictReader
+from urllib.parse import parse_qs, urlsplit
 
 
 # Based on gcalcli output names
@@ -38,6 +38,15 @@ class Event:
         return f"zoommtg://{domain}/join?action=join{room}{pwd}"
 
 
+def internet_connected():
+    try:
+        socket.create_connection(("1.1.1.1", 80), timeout=1)
+        return True
+    except OSError:
+        pass
+    return False
+
+
 def build_notify_cmd(title, body, actions=None, error=False, mute=False):
     actions = {} if actions is None else actions
 
@@ -57,14 +66,23 @@ def build_notify_cmd(title, body, actions=None, error=False, mute=False):
     return f'notify-send -a {app} {style} {action_str} "{title}" "{body}"'
 
 
+if not internet_connected():
+    print("Internet not connected, exiting...")
+    sys.exit(0)
+
 gcalcli_details = "--details url --details conference --details location"
 gcalcli_limits = "now 5mins"
 gcalcli = f"gcalcli agenda {gcalcli_details} --nostarted --tsv {gcalcli_limits}"
 
 try:
     agenda_str = sp.check_output(gcalcli.split(" "), text=True).split("\n")
-except sp.CalledProcessError as e:
-    sp.run(build_notify_cmd("Failed to call gcalcli", str(e), error=True), shell=True)
+except sp.CalledProcessError:
+    sp.run(
+        build_notify_cmd(
+            "gcalcli exited with non-zero code", "See journal for details", error=True
+        ),
+        shell=True,
+    )
     sys.exit(1)
 
 event_dicts = DictReader(agenda_str, delimiter="\t")
