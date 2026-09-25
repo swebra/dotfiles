@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   pkgs-unstable,
   ...
 }: let
@@ -10,10 +11,10 @@ in {
     package = pkgs-unstable.silverbullet;
     listenPort = 8097;
     spaceDir = sbDir;
-    # MANUAL SETUP: User auth is manually set (TODO: secret management)
-    # Contains `SB_USER=user:password`
-    envFile = "/etc/silverbullet/silverbullet.env";
   };
+
+  # Make git available until nixpkgs service catches up
+  systemd.services.silverbullet.path = [pkgs.git];
 
   # MANUAL SETUP: Ownership of mount must be manually set. Currently squashing to admin.
   myOS.server.nfs.mount."notes" = {
