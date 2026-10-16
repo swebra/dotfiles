@@ -16,7 +16,7 @@
 
     src = pkgs.fetchurl {
       url = "https://releases.silverbullet.plus/releases/${version}/SilverBullet_x86_64.AppImage";
-      hash = "sha256-7YQ0GId03Qfzd6Au60jC3z3mm5NZi2bQTto7bL5PF58=";
+      hash = "sha256-6weXHh6/bYBZE1DGEonpsagvvo/5bAtn/kInZnVTuFw=";
     };
 
     extracted = pkgs.appimageTools.extractType2 {inherit pname version src;};
