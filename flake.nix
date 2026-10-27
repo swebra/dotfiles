@@ -47,7 +47,6 @@
         "eric@fw13pro" = makeHome "x86_64-linux" ./hosts/fw13pro/home.nix;
         "julia@julia-three" = makeHome "x86_64-linux" ./hosts/julia-three/home.nix;
         "eric@the-cube" = makeHome "x86_64-linux" ./hosts/the-cube/home.nix;
-        "deck@steamdeck" = makeHome "x86_64-linux" ./hosts/steamdeck/home.nix;
       };
     };
 }
