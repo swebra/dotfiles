@@ -23,7 +23,7 @@
       background_opacity = 0.95;
       margin_ends = 10;
     };
-    panel.transparency_mode = "solid";
+    shell.panel.transparency_mode = "solid";
     osd.background_opacity = 90;
 
     # Bar
@@ -62,6 +62,7 @@
       media = {
         show_progress = true;
         hide_when_no_media = true;
+        hide_when_idle = true;
       };
       network.show_label = false;
       privacy = {
@@ -76,7 +77,7 @@
     };
 
     # Control center
-    panel.open_near_click_control_center = true;
+    shell.panel.open_near_click_control_center = true;
     control_center = {
       hidden_tabs = ["monitor"];
       shortcuts = [
@@ -89,16 +90,45 @@
       ];
     };
     location.auto_locate = true; # For weather tab
+    calendar = {
+      enabled = true;
+      account.work = {
+        name = "Work";
+        type = "google";
+      };
+      reminders = false;
+    };
 
     # Other modal config
     shell = {
       launcher = {
+        layout = "simple";
         compact = true;
         providers.session.global = true;
       };
-      screenshot.save_to_file = false;
+      screenshot = {
+        annotate = true;
+        save_to_file = false;
+        close_on_copy = false;
+        close_on_save = false;
+      };
     };
-    osd.kinds.media = false;
+
+    osd.kinds = {
+      volume_input = false; # Hide mic volume auto-adjust by things like discord, zoom, etc.
+      media = false; # Have media widget instead to show track name
+    };
+
+    notification.filter = {
+      network = {
+        match = "Network Management";
+        save_history = false;
+      };
+      slack = {
+        match = "Slack";
+        save_history = false;
+      };
+    };
 
     # Power + lock
     shell.session.actions = [
@@ -123,7 +153,7 @@
     # TODO: Figure out the mechanism here, the timeout options seem to have weird
     # behavior, unclear if they are global timers or after-last-behavior.
     idle = let
-      fade_time = 5;
+      fade_time = 10;
     in {
       pre_action_fade_seconds = fade_time;
       behavior_order = ["lock" "screen-off" "lock-and-suspend"];
