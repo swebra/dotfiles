@@ -34,16 +34,16 @@ let
 
   litra-autotoggle = pkgs.rustPackages.rustPlatform.buildRustPackage rec {
     pname = "litra-autotoggle";
-    version = "1.4.0";
+    version = "1.4.1";
 
     src = pkgs.fetchFromGitHub {
       owner = "timrogers";
       repo = "litra-autotoggle";
       tag = "v${version}";
-      hash = "sha256-fx3j3LIdiSqnsNb66BRzz/q1qlLbPsfrtfKFKesJw0k=";
+      hash = "sha256-KKcFGyG93aJefD3ETyVAvRheSxfLWWsWvjm0ldG7ZWM=";
     };
 
-    cargoHash = "sha256-jCLUdPUGdhFTysKLCqE1JGfUVzzDdvQDFPnelyQcDSY=";
+    cargoHash = "sha256-60lFLDaatmr+35i1tjUBpeE8pMMF7+8P5XeL+qjkd0w=";
 
     nativeBuildInputs = [pkgs.pkg-config];
 
