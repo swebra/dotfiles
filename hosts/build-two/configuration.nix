@@ -14,6 +14,7 @@
   };
 
   hardware.bluetooth.enable = true;
+  services.hardware.openrgb.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
