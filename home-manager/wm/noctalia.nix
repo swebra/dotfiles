@@ -101,6 +101,7 @@
 
     # Other modal config
     shell = {
+      polkit_agent = true;
       launcher = {
         layout = "simple";
         compact = true;
@@ -112,6 +113,7 @@
         close_on_copy = false;
         close_on_save = false;
       };
+      panel.wallpaper_show_names = false;
     };
 
     osd.kinds = {

@@ -16,20 +16,6 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
-
-------------------
----- MONITORS ----
-------------------
-
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = "1.5",
-})
-
-
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -220,23 +206,23 @@ hl.config({
 ---- INPUT ----
 ---------------
 
-hl.config({
-    input = {
-        kb_layout    = "us",
-        kb_variant   = "",
-        kb_model     = "",
-        kb_options   = "",
-        kb_rules     = "",
+-- hl.config({
+--     input = {
+--         kb_layout    = "us",
+--         kb_variant   = "",
+--         kb_model     = "",
+--         kb_options   = "",
+--         kb_rules     = "",
 
-        follow_mouse = 1,
+--         follow_mouse = 1,
 
-        sensitivity  = 0, -- -1.0 - 1.0, 0 means no modification.
+--         sensitivity  = 0, -- -1.0 - 1.0, 0 means no modification.
 
-        touchpad     = {
-            natural_scroll = true,
-        },
-    },
-})
+--         touchpad     = {
+--             natural_scroll = true,
+--         },
+--     },
+-- })
 
 hl.gesture({
     fingers = 3,
@@ -246,10 +232,10 @@ hl.gesture({
 
 -- Example per-device config
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
-})
+-- hl.device({
+--     name        = "epic-mouse-v1",
+--     sensitivity = -0.5,
+-- })
 
 
 ---------------------
@@ -352,3 +338,9 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-- hl.config({
+--     xwayland = {
+--         -- force_zero_scaling = true
+--     }
+-- })
