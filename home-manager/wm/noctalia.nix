@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # TODO: Use built-in home-manager configuration when it's available
 
   # See .local/state/noctalia/config.toml for the GUI config reference
@@ -13,15 +17,20 @@
     };
 
     # Theming
-    theme.source = "wallpaper";
+    theme = {
+      source = "wallpaper";
+      templates.builtin_ids = ["hyprland"];
+    };
     wallpaper = {
+      directory = "${config.xdg.userDirs.pictures}/dorianlegret";
       automation.enabled = true;
       transition_on_startup = true;
     };
     bar.default = {
       capsule = true;
-      background_opacity = 0.95;
-      margin_ends = 10;
+      background_opacity = 0.5;
+      margin_ends = 5;
+      padding = 5;
     };
     shell.panel.transparency_mode = "solid";
     osd.background_opacity = 90;
@@ -47,7 +56,10 @@
     widget = let
       iso_format = "%F %H:%M:%S %z";
     in {
-      active_window.display = "text_only";
+      active_window = {
+        display = "text_only";
+        min_length = 10;
+      };
       clock = {
         anchor = true;
         format = "%I:%M %p";
@@ -63,6 +75,7 @@
         show_progress = true;
         hide_when_no_media = true;
         hide_when_idle = true;
+        art_size = 100; # Take up all available space
       };
       network.show_label = false;
       privacy = {
@@ -105,6 +118,7 @@
       launcher = {
         layout = "simple";
         compact = true;
+        category_icons_only = true;
         providers.session.global = true;
       };
       screenshot = {
@@ -129,6 +143,12 @@
       slack = {
         match = "Slack";
         save_history = false;
+        play_sound = false;
+      };
+      discord = {
+        match = "Discord";
+        save_history = false;
+        play_sound = false;
       };
     };
 

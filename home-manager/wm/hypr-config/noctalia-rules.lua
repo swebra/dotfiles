@@ -1,11 +1,11 @@
 -- https://docs.noctalia.dev/noctalia/compositor-settings/hyprland/
 
--- Start noctalia on startup
+-- Start Noctalia on startup
 hl.on("hyprland.start", function()
     hl.exec_cmd("noctalia")
 end)
 
--- Enable blur
+-- Styling
 hl.layer_rule({
     name = "noctalia",
     match = {
@@ -16,3 +16,9 @@ hl.layer_rule({
     blur = true,
     blur_popups = true,
 })
+
+-- Use Noctalia's template-provided colors if they exist
+local status, noctalia = pcall(require, "noctalia")
+if status then
+    noctalia.apply_theme()
+end
