@@ -1,0 +1,12 @@
+{
+  "cSpell.words": [
+    "attrset",
+    "pkgs"
+  ],
+  "Lua.workspace.library": [
+    "/run/current-system/sw/share/hypr/stubs/"
+  ],
+  "[lua]": {
+    "editor.formatOnSave": true
+  }
+}
