@@ -46,6 +46,7 @@
           ms-python.vscode-pylance
           ms-python.debugpy
           charliermarsh.ruff
+          sumneko.lua
         ];
       };
 
