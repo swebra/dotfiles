@@ -28,26 +28,17 @@ hl.monitor({
 -- General
 hl.config({
     input = {
-        kb_layout    = "us",
-        kb_variant   = "",
-        kb_model     = "",
-        kb_options   = "",
-        kb_rules     = "",
-
-        follow_mouse = 1,
-
-        sensitivity  = -1, -- -1.0 - 1.0, 0 means no modification.
-
-        touchpad     = {
+        accel_profile = "flat",
+        sensitivity = -0.5, -- With 800 DPI, options are [-1, 1]
+        touchpad = {
             natural_scroll = true,
         },
-    },
+        kb_layout = "us",
+    }
 })
 
 --- Framework trackpad
 hl.device({
-    name        = "pixa3854:00-093a:1343-touchpad",
+    name = "pixa3854:00-093a:1343-touchpad",
     sensitivity = 0,
 })
-
--- Why is the razer unaffected?

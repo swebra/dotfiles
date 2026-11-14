@@ -317,5 +317,8 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.config({
     layout = {
         single_window_aspect_ratio = { 16, 9 }
+    },
+    input = {
+        follow_mouse = 1
     }
 })
