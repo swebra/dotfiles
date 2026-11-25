@@ -85,7 +85,7 @@
           show_progress = true;
           hide_when_no_media = true;
           hide_when_idle = true;
-          art_size = 100; # Take up all available space
+          art_size = 96; # Take up all available space
         };
         network.show_label = false;
         privacy = {
@@ -184,24 +184,46 @@
 
       # TODO: Figure out the mechanism here, the timeout options seem to have weird
       # behavior, unclear if they are global timers or after-last-behavior.
+
+      /*
+      Timeout time is global across all behaviors (not cumulative between behaviors) and
+      is expected to match behavior_order.
+
+      Generally* the fade is triggered at the first timeout and effectively delays all
+      actions until the fade is complete, e.g. fade of 10s with a 20s screen off and 50s
+      suspend will result in the screen being fully off at 30s and system sleeping at
+      60s.
+
+      *From testing, there seems to be an edge case where the delay is ignored if a
+      secondary behavior timeout lines up with a delayed first behavior action, e.g. a
+      fade of 10s with a 20s screen off and 30s suspend will result in the screen being
+      fully off at 30s and the system immediately sleeping rather than the sleep being
+      delayed until 40s.
+      */
       idle = let
-        fade_time = 10;
+        fade_time = 15;
+        timeout_start =
+          (
+            if config.myHome.wm.mobile
+            then 2 # minutes
+            else 15 # minutes
+          )
+          * 60;
       in {
         pre_action_fade_seconds = fade_time;
-        behavior_order = ["lock" "screen-off" "lock-and-suspend"];
+        behavior_order = ["screen-off" "lock" "suspend"];
         behavior = {
-          lock = {
-            action = "lock";
-            timeout = 120 - fade_time;
-          };
           screen-off = {
             action = "screen_off";
-            locked_timeout = 15; # How long after the screen is locked.
-            timeout = 200; # This is time after lock
+            timeout = timeout_start - fade_time;
           };
-          lock-and-suspend = {
-            action = "lock_and_suspend";
-            timeout = 300;
+          lock = {
+            action = "lock";
+            timeout = timeout_start * 2 - fade_time;
+          };
+          suspend = {
+            action = "suspend";
+            timeout = timeout_start * 4 - fade_time;
           };
         };
       };
