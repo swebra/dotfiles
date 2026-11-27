@@ -24,6 +24,7 @@
   environment.systemPackages = [
     pkgs-unstable.noctalia
     pkgs.wl-clipboard
+    pkgs.gpu-screen-recorder # Used by noctalia-screenrecorder
   ];
 
   # Luciole file manager

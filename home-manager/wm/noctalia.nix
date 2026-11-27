@@ -50,7 +50,7 @@
         capsule_group = [
           {
             id = "system_tray";
-            members = ["tray" "privacy" "volume" "bluetooth" "network" "battery"];
+            members = ["tray" "volume" "bluetooth" "network" "battery"];
           }
           {
             id = "system_monitor";
@@ -60,7 +60,7 @@
 
         start = ["workspaces" "active_window"];
         center = ["date" "clock" "weather"];
-        end = ["media" "notifications" "group:system_tray"];
+        end = ["media" "notifications" "privacy" "group:system_tray"];
       };
 
       widget = let
@@ -109,7 +109,7 @@
           {type = "caffeine";}
           {type = "nightlight";}
           {type = "dark_mode";}
-          {type = "wallpaper";}
+          {type = "noctalia/screen_recorder:toggle";}
         ];
       };
       location.auto_locate = true; # For weather tab
@@ -119,7 +119,7 @@
           name = "Work";
           type = "google";
         };
-        reminders = false;
+        reminders.enabled = false;
       };
 
       # Other modal config
@@ -232,6 +232,10 @@
         enabled = true;
         lock_before_suspend = true;
       };
+
+      # Plugins
+      plugins.enabled = ["noctalia/screen_recorder"];
+      plugin_settings."noctalia/screen_recorder".directory = "~/Videos";
     };
   };
 }
