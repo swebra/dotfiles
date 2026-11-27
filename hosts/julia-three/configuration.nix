@@ -1,21 +1,10 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./hardware-configuration.nix
-    inputs.vscode-server.nixosModules.default # vscode server
-  ];
-
+{pkgs, ...}: {
   myOS = {
     machine-name = "julia-three";
     user = "julia";
     system.audio.enable = false;
     server.enable = true;
   };
-
-  services.vscode-server.enable = true;
 
   # Hardware acceleration
   # https://wiki.nixos.org/wiki/Accelerated_Video_Playback
