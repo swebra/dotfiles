@@ -1,6 +1,7 @@
 {
   pkgs,
   pkgs-unstable,
+  inputs,
   ...
 }: {
   /*
@@ -22,12 +23,14 @@
 
   environment.systemPackages = [
     pkgs-unstable.noctalia
-    # Temp playing with file managers
-    pkgs.gvfs
-    # pkgs.gvfs-smb
+    pkgs.wl-clipboard
   ];
-  # Temp playing with file managers
-  services.gvfs.enable = true;
+
+  # Luciole file manager
+  imports = [inputs.luciole.nixosModules.default];
+  services.gvfs.enable = true; # For trash, network support
+  services.avahi.enable = true; # DNS discovery
+  programs.luciole.enable = true;
 
   # TODO: Double check if needed
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

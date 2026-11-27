@@ -29,7 +29,7 @@
       # Theming
       theme = {
         source = "wallpaper";
-        templates.builtin_ids = ["hyprland"];
+        templates.builtin_ids = ["hyprland" "luciole"];
       };
       wallpaper = {
         directory = "${config.xdg.userDirs.pictures}/dorianlegret";
