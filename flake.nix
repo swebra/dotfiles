@@ -4,31 +4,28 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Personal private repo
+    private.url = "git+ssh://git@github.com/swebra/dotfiles-private?ref=main&shallow=1";
+
+    # Apps not available in nixpkgs
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Community zen-browser before it's in official repos
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    # Personal private repo
-    private.url = "git+ssh://git@github.com/swebra/dotfiles-private?ref=main&shallow=1";
   };
 
   outputs = {...} @ inputs:
