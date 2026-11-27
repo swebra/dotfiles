@@ -31,6 +31,10 @@
   services.gvfs.enable = true; # For trash, network support
   services.avahi.enable = true; # DNS discovery
   programs.luciole.enable = true;
+  xdg.portal = {
+    extraPortals = [inputs.luciole.packages.${pkgs.stdenv.hostPlatform.system}.default];
+    config.common."org.freedesktop.impl.portal.FileChooser" = ["luciole" "gtk"];
+  };
 
   # TODO: Double check if needed
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
